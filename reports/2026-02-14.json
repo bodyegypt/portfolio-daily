@@ -1,0 +1,2376 @@
+{
+  "date": "2026-02-14",
+  "baseCurrency": "USD",
+  "configUsed": {
+    "documentCount": 2,
+    "currencies": [
+      "USD",
+      "EGP"
+    ],
+    "watchlistCount": 0,
+    "authMode": "api_key",
+    "risk": {
+      "maxPositionWeight": 0.2,
+      "top3ConcentrationWarn": 0.55,
+      "drawdownWarnPct": -0.15,
+      "takeProfitWarnPct": 0.25,
+      "minPositionWeight": 0.02
+    }
+  },
+  "failures": [],
+  "worksheets": [
+    {
+      "documentName": "Thndr US",
+      "documentTitle": "Thndr US",
+      "worksheetTitle": "Sheet1",
+      "market": "US Equities",
+      "currency": "USD",
+      "headerRows": [
+        0
+      ],
+      "analysis": {
+        "label": "Thndr US / Sheet1",
+        "rawPositionCount": 6,
+        "positionCount": 6,
+        "inactivePositionCount": 0,
+        "snapshot": {
+          "baseSpent": 569.69,
+          "baseMarketValue": 866.7206,
+          "basePnl": 297.0306,
+          "totalSpent": 569.69,
+          "totalMarketValue": 866.7206,
+          "totalPnl": 297.0306,
+          "totalPnlPct": 0.5214,
+          "adjustments": {
+            "count": 0,
+            "spentDelta": 0,
+            "marketValueDelta": 0,
+            "pnlDelta": 0,
+            "byKind": [],
+            "entries": []
+          },
+          "topPositions": [
+            {
+              "symbol": "SGOL",
+              "marketValue": 332.5598,
+              "marketWeight": 0.3837
+            },
+            {
+              "symbol": "SIVR",
+              "marketValue": 203.5516,
+              "marketWeight": 0.2349
+            },
+            {
+              "symbol": "GOOG",
+              "marketValue": 141.5006,
+              "marketWeight": 0.1633
+            },
+            {
+              "symbol": "EOG",
+              "marketValue": 115.7559,
+              "marketWeight": 0.1336
+            },
+            {
+              "symbol": "COP",
+              "marketValue": 60.1053,
+              "marketWeight": 0.0693
+            }
+          ]
+        },
+        "risk": {
+          "overweightPositions": [
+            {
+              "symbol": "SGOL",
+              "marketWeight": 0.3837,
+              "marketValue": 332.5598
+            },
+            {
+              "symbol": "SIVR",
+              "marketWeight": 0.2349,
+              "marketValue": 203.5516
+            }
+          ],
+          "top3Concentration": 0.7818,
+          "top3ConcentrationBreached": true,
+          "bigLosers": [],
+          "weirdValues": []
+        },
+        "actions": {
+          "trimCandidates": [
+            {
+              "symbol": "SGOL",
+              "marketWeight": 0.3837,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            },
+            {
+              "symbol": "SIVR",
+              "marketWeight": 0.2349,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            }
+          ],
+          "addCandidates": [
+            {
+              "symbol": "URA",
+              "currentWeight": 0.0153,
+              "options": [
+                "Keep weight small if uncertainty is still high.",
+                "Scale only if thesis and liquidity checks remain valid.",
+                "Leave unchanged to prioritize concentration control."
+              ],
+              "note": "Underweight position shown for review, not a direct buy instruction."
+            }
+          ],
+          "stopLossReview": [],
+          "takeProfitReview": [
+            {
+              "symbol": "URA",
+              "pnlPct": 3.5681,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "SIVR",
+              "pnlPct": 2.7253,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "SGOL",
+              "pnlPct": 0.3302,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "GOOG",
+              "pnlPct": 0.3175,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            }
+          ]
+        },
+        "deepInsights": {
+          "concentrationStress": "high",
+          "hitRate": 1,
+          "winnerCount": 6,
+          "loserCount": 0,
+          "flatCount": 0,
+          "topContributors": [
+            {
+              "symbol": "SIVR",
+              "pnl": 148.9116,
+              "pnlPct": 2.7253
+            },
+            {
+              "symbol": "SGOL",
+              "pnl": 82.5598,
+              "pnlPct": 0.3302
+            },
+            {
+              "symbol": "GOOG",
+              "pnl": 34.1006,
+              "pnlPct": 0.3175
+            }
+          ],
+          "topDetractors": [],
+          "deadCapitalSpent": 0,
+          "inactivePositionCount": 0,
+          "avgWinnerPct": 1.208,
+          "avgLoserPct": null,
+          "multiLotSymbols": []
+        },
+        "checklist": [
+          "Thesis still valid vs latest fundamentals?",
+          "Any near-term earnings/news/events that change risk?",
+          "Liquidity and slippage acceptable for current size?",
+          "Any currency exposure drift vs base currency?",
+          "Position sizes still aligned with risk budget?",
+          "Rebalancing rules followed consistently?"
+        ],
+        "adjustments": [],
+        "positions": [
+          {
+            "symbol": "SIVR",
+            "quantity": 2.78,
+            "avgCost": 19.6547,
+            "spent": 54.64,
+            "marketValue": 203.5516,
+            "pnl": 148.9116,
+            "pnlPct": 2.7253,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "SGOL",
+            "quantity": 6.937,
+            "avgCost": 36.0386,
+            "spent": 250,
+            "marketValue": 332.5598,
+            "pnl": 82.5598,
+            "pnlPct": 0.3302,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "GOOG",
+            "quantity": 0.4624,
+            "avgCost": 232.2715,
+            "spent": 107.4,
+            "marketValue": 141.5006,
+            "pnl": 34.1006,
+            "pnlPct": 0.3175,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "URA",
+            "quantity": 0.2552,
+            "avgCost": 11.3636,
+            "spent": 2.9,
+            "marketValue": 13.2474,
+            "pnl": 10.3474,
+            "pnlPct": 3.5681,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "COP",
+            "quantity": 0.5394,
+            "avgCost": 92.6956,
+            "spent": 50,
+            "marketValue": 60.1053,
+            "pnl": 10.1053,
+            "pnlPct": 0.2021,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "EOG",
+            "quantity": 0.9588,
+            "avgCost": 109.2511,
+            "spent": 104.75,
+            "marketValue": 115.7559,
+            "pnl": 11.0059,
+            "pnlPct": 0.1051,
+            "sourceCount": 1
+          }
+        ],
+        "inactivePositions": []
+      }
+    },
+    {
+      "documentName": "Thndr US",
+      "documentTitle": "Thndr US",
+      "worksheetTitle": "Crypto",
+      "market": "Crypto",
+      "currency": "USD",
+      "headerRows": [
+        0
+      ],
+      "analysis": {
+        "label": "Thndr US / Crypto",
+        "rawPositionCount": 3,
+        "positionCount": 3,
+        "inactivePositionCount": 0,
+        "snapshot": {
+          "baseSpent": 3950.1,
+          "baseMarketValue": 2134.2706,
+          "basePnl": -1815.8294,
+          "totalSpent": 5520.1,
+          "totalMarketValue": 2134.2706,
+          "totalPnl": -3385.8294,
+          "totalPnlPct": -0.6134,
+          "adjustments": {
+            "count": 1,
+            "spentDelta": 1570,
+            "marketValueDelta": 0,
+            "pnlDelta": -1570,
+            "byKind": [
+              {
+                "kind": "loss_carry",
+                "amount": 1570
+              }
+            ],
+            "entries": [
+              {
+                "kind": "loss_carry",
+                "label": "OLD LOSS",
+                "amount": 1570,
+                "spentDelta": 1570,
+                "marketValueDelta": 0,
+                "pnlDelta": -1570,
+                "sourceDocument": "Thndr US",
+                "sourceWorksheet": "Crypto",
+                "rowIndex": 8
+              }
+            ]
+          },
+          "topPositions": [
+            {
+              "symbol": "RENDER",
+              "marketValue": 954.8,
+              "marketWeight": 0.4474
+            },
+            {
+              "symbol": "HEDERA",
+              "marketValue": 677.0499,
+              "marketWeight": 0.3172
+            },
+            {
+              "symbol": "ZILLIQA",
+              "marketValue": 502.4207,
+              "marketWeight": 0.2354
+            }
+          ]
+        },
+        "risk": {
+          "overweightPositions": [
+            {
+              "symbol": "RENDER",
+              "marketWeight": 0.4474,
+              "marketValue": 954.8
+            },
+            {
+              "symbol": "HEDERA",
+              "marketWeight": 0.3172,
+              "marketValue": 677.0499
+            },
+            {
+              "symbol": "ZILLIQA",
+              "marketWeight": 0.2354,
+              "marketValue": 502.4207
+            }
+          ],
+          "top3Concentration": 1,
+          "top3ConcentrationBreached": true,
+          "bigLosers": [
+            {
+              "symbol": "ZILLIQA",
+              "pnlPct": -0.5981,
+              "pnl": -747.5793
+            },
+            {
+              "symbol": "RENDER",
+              "pnlPct": -0.4033,
+              "pnl": -645.2
+            },
+            {
+              "symbol": "HEDERA",
+              "pnlPct": -0.3846,
+              "pnl": -423.0501
+            }
+          ],
+          "weirdValues": []
+        },
+        "actions": {
+          "trimCandidates": [
+            {
+              "symbol": "RENDER",
+              "marketWeight": 0.4474,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            },
+            {
+              "symbol": "HEDERA",
+              "marketWeight": 0.3172,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            },
+            {
+              "symbol": "ZILLIQA",
+              "marketWeight": 0.2354,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            }
+          ],
+          "addCandidates": [],
+          "stopLossReview": [
+            {
+              "symbol": "ZILLIQA",
+              "pnlPct": -0.5981,
+              "options": [
+                "Hold with a clear invalidation level.",
+                "Reduce risk exposure.",
+                "Exit and rotate capital."
+              ],
+              "warning": "Avoid averaging down without a refreshed thesis and explicit risk limits."
+            },
+            {
+              "symbol": "RENDER",
+              "pnlPct": -0.4033,
+              "options": [
+                "Hold with a clear invalidation level.",
+                "Reduce risk exposure.",
+                "Exit and rotate capital."
+              ],
+              "warning": "Avoid averaging down without a refreshed thesis and explicit risk limits."
+            },
+            {
+              "symbol": "HEDERA",
+              "pnlPct": -0.3846,
+              "options": [
+                "Hold with a clear invalidation level.",
+                "Reduce risk exposure.",
+                "Exit and rotate capital."
+              ],
+              "warning": "Avoid averaging down without a refreshed thesis and explicit risk limits."
+            }
+          ],
+          "takeProfitReview": []
+        },
+        "deepInsights": {
+          "concentrationStress": "high",
+          "hitRate": 0,
+          "winnerCount": 0,
+          "loserCount": 3,
+          "flatCount": 0,
+          "topContributors": [],
+          "topDetractors": [
+            {
+              "symbol": "ZILLIQA",
+              "pnl": -747.5793,
+              "pnlPct": -0.5981
+            },
+            {
+              "symbol": "RENDER",
+              "pnl": -645.2,
+              "pnlPct": -0.4033
+            },
+            {
+              "symbol": "HEDERA",
+              "pnl": -423.0501,
+              "pnlPct": -0.3846
+            }
+          ],
+          "deadCapitalSpent": 0,
+          "inactivePositionCount": 0,
+          "avgWinnerPct": null,
+          "avgLoserPct": -0.462,
+          "multiLotSymbols": [
+            {
+              "symbol": "RENDER",
+              "rows": 2,
+              "marketValue": 954.8,
+              "pnl": -645.2
+            },
+            {
+              "symbol": "HEDERA",
+              "rows": 2,
+              "marketValue": 677.0499,
+              "pnl": -423.0501
+            }
+          ]
+        },
+        "checklist": [
+          "Thesis still valid vs latest fundamentals?",
+          "Any near-term earnings/news/events that change risk?",
+          "Liquidity and slippage acceptable for current size?",
+          "Any currency exposure drift vs base currency?",
+          "Position sizes still aligned with risk budget?",
+          "Rebalancing rules followed consistently?"
+        ],
+        "adjustments": [
+          {
+            "kind": "loss_carry",
+            "label": "OLD LOSS",
+            "amount": 1570,
+            "spentDelta": 1570,
+            "marketValueDelta": 0,
+            "pnlDelta": -1570,
+            "sourceDocument": "Thndr US",
+            "sourceWorksheet": "Crypto",
+            "rowIndex": 8
+          }
+        ],
+        "positions": [
+          {
+            "symbol": "HEDERA",
+            "quantity": 6497.6,
+            "avgCost": 0.1693,
+            "spent": 1100.1,
+            "marketValue": 677.0499,
+            "pnl": -423.0501,
+            "pnlPct": -0.3846,
+            "sourceCount": 2
+          },
+          {
+            "symbol": "RENDER",
+            "quantity": 620,
+            "avgCost": 2.5806,
+            "spent": 1600,
+            "marketValue": 954.8,
+            "pnl": -645.2,
+            "pnlPct": -0.4033,
+            "sourceCount": 2
+          },
+          {
+            "symbol": "ZILLIQA",
+            "quantity": 109127,
+            "avgCost": 0.0115,
+            "spent": 1250,
+            "marketValue": 502.4207,
+            "pnl": -747.5793,
+            "pnlPct": -0.5981,
+            "sourceCount": 1
+          }
+        ],
+        "inactivePositions": []
+      }
+    },
+    {
+      "documentName": "Thndr Egx",
+      "documentTitle": "Thndr Egx",
+      "worksheetTitle": "Sheet1",
+      "market": "EGX Equities",
+      "currency": "EGP",
+      "headerRows": [
+        0
+      ],
+      "analysis": {
+        "label": "Thndr Egx / Sheet1",
+        "rawPositionCount": 11,
+        "positionCount": 7,
+        "inactivePositionCount": 4,
+        "snapshot": {
+          "baseSpent": 23525.16,
+          "baseMarketValue": 28814.85,
+          "basePnl": 5289.69,
+          "totalSpent": 23525.16,
+          "totalMarketValue": 28814.85,
+          "totalPnl": 5289.69,
+          "totalPnlPct": 0.2249,
+          "adjustments": {
+            "count": 0,
+            "spentDelta": 0,
+            "marketValueDelta": 0,
+            "pnlDelta": 0,
+            "byKind": [],
+            "entries": []
+          },
+          "topPositions": [
+            {
+              "symbol": "AMOC",
+              "marketValue": 9911.04,
+              "marketWeight": 0.344
+            },
+            {
+              "symbol": "MPCI",
+              "marketValue": 8104.32,
+              "marketWeight": 0.2813
+            },
+            {
+              "symbol": "MFPC",
+              "marketValue": 5490.81,
+              "marketWeight": 0.1906
+            },
+            {
+              "symbol": "EGAL",
+              "marketValue": 3153.8,
+              "marketWeight": 0.1095
+            },
+            {
+              "symbol": "JUFO",
+              "marketValue": 1194,
+              "marketWeight": 0.0414
+            }
+          ]
+        },
+        "risk": {
+          "overweightPositions": [
+            {
+              "symbol": "AMOC",
+              "marketWeight": 0.344,
+              "marketValue": 9911.04
+            },
+            {
+              "symbol": "MPCI",
+              "marketWeight": 0.2813,
+              "marketValue": 8104.32
+            }
+          ],
+          "top3Concentration": 0.8158,
+          "top3ConcentrationBreached": true,
+          "bigLosers": [],
+          "weirdValues": []
+        },
+        "actions": {
+          "trimCandidates": [
+            {
+              "symbol": "AMOC",
+              "marketWeight": 0.344,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            },
+            {
+              "symbol": "MPCI",
+              "marketWeight": 0.2813,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            }
+          ],
+          "addCandidates": [
+            {
+              "symbol": "IFAP",
+              "currentWeight": 0.0075,
+              "options": [
+                "Keep weight small if uncertainty is still high.",
+                "Scale only if thesis and liquidity checks remain valid.",
+                "Leave unchanged to prioritize concentration control."
+              ],
+              "note": "Underweight position shown for review, not a direct buy instruction."
+            }
+          ],
+          "stopLossReview": [],
+          "takeProfitReview": [
+            {
+              "symbol": "JUFO",
+              "pnlPct": 148.25,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "SAUD",
+              "pnlPct": 25.85,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "EGAL",
+              "pnlPct": 8.2216,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "IFAP",
+              "pnlPct": 6.8036,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            }
+          ]
+        },
+        "deepInsights": {
+          "concentrationStress": "high",
+          "hitRate": 0.8571,
+          "winnerCount": 6,
+          "loserCount": 1,
+          "flatCount": 0,
+          "topContributors": [
+            {
+              "symbol": "EGAL",
+              "pnl": 2811.8,
+              "pnlPct": 8.2216
+            },
+            {
+              "symbol": "JUFO",
+              "pnl": 1186,
+              "pnlPct": 148.25
+            },
+            {
+              "symbol": "SAUD",
+              "pnl": 775.5,
+              "pnlPct": 25.85
+            }
+          ],
+          "topDetractors": [
+            {
+              "symbol": "MPCI",
+              "pnl": -454.24,
+              "pnlPct": -0.0531
+            }
+          ],
+          "deadCapitalSpent": 1403,
+          "inactivePositionCount": 4,
+          "avgWinnerPct": 31.5418,
+          "avgLoserPct": -0.0531,
+          "multiLotSymbols": []
+        },
+        "checklist": [
+          "Thesis still valid vs latest fundamentals?",
+          "Any near-term earnings/news/events that change risk?",
+          "Liquidity and slippage acceptable for current size?",
+          "Any currency exposure drift vs base currency?",
+          "Position sizes still aligned with risk budget?",
+          "Rebalancing rules followed consistently?"
+        ],
+        "adjustments": [],
+        "positions": [
+          {
+            "symbol": "SAUD",
+            "quantity": 42,
+            "avgCost": -0.7143,
+            "spent": -30,
+            "marketValue": 745.5,
+            "pnl": 775.5,
+            "pnlPct": 25.85,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "JUFO",
+            "quantity": 40,
+            "avgCost": 0.2,
+            "spent": 8,
+            "marketValue": 1194,
+            "pnl": 1186,
+            "pnlPct": 148.25,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "AMOC",
+            "quantity": 1392,
+            "avgCost": 6.8901,
+            "spent": 9591,
+            "marketValue": 9911.04,
+            "pnl": 320.04,
+            "pnlPct": 0.0334,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "MFPC",
+            "quantity": 169,
+            "avgCost": 29.7515,
+            "spent": 5028,
+            "marketValue": 5490.81,
+            "pnl": 462.81,
+            "pnlPct": 0.092,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "IFAP",
+            "quantity": 11,
+            "avgCost": 2.5091,
+            "spent": 27.6,
+            "marketValue": 215.38,
+            "pnl": 187.78,
+            "pnlPct": 6.8036,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "EGAL",
+            "quantity": 13,
+            "avgCost": 26.3077,
+            "spent": 342,
+            "marketValue": 3153.8,
+            "pnl": 2811.8,
+            "pnlPct": 8.2216,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "MPCI",
+            "quantity": 54,
+            "avgCost": 158.4919,
+            "spent": 8558.56,
+            "marketValue": 8104.32,
+            "pnl": -454.24,
+            "pnlPct": -0.0531,
+            "sourceCount": 1
+          }
+        ],
+        "inactivePositions": [
+          {
+            "symbol": "ALCN",
+            "quantity": 0,
+            "avgCost": null,
+            "spent": 111,
+            "marketValue": 0,
+            "pnl": -111,
+            "pnlPct": -1,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "CCAP",
+            "quantity": 0,
+            "avgCost": null,
+            "spent": 699,
+            "marketValue": 0,
+            "pnl": -699,
+            "pnlPct": -1,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "DSCW",
+            "quantity": 0,
+            "avgCost": null,
+            "spent": 593,
+            "marketValue": 0,
+            "pnl": -593,
+            "pnlPct": -1,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "PRCL",
+            "quantity": 0,
+            "avgCost": null,
+            "spent": -34,
+            "marketValue": 0,
+            "pnl": 34,
+            "pnlPct": 1,
+            "sourceCount": 1
+          }
+        ]
+      }
+    }
+  ],
+  "markets": [
+    {
+      "market": "US Equities",
+      "currency": "USD",
+      "analysis": {
+        "label": "US Equities (USD)",
+        "rawPositionCount": 6,
+        "positionCount": 6,
+        "inactivePositionCount": 0,
+        "snapshot": {
+          "baseSpent": 569.69,
+          "baseMarketValue": 866.7206,
+          "basePnl": 297.0306,
+          "totalSpent": 569.69,
+          "totalMarketValue": 866.7206,
+          "totalPnl": 297.0306,
+          "totalPnlPct": 0.5214,
+          "adjustments": {
+            "count": 0,
+            "spentDelta": 0,
+            "marketValueDelta": 0,
+            "pnlDelta": 0,
+            "byKind": [],
+            "entries": []
+          },
+          "topPositions": [
+            {
+              "symbol": "SGOL",
+              "marketValue": 332.5598,
+              "marketWeight": 0.3837
+            },
+            {
+              "symbol": "SIVR",
+              "marketValue": 203.5516,
+              "marketWeight": 0.2349
+            },
+            {
+              "symbol": "GOOG",
+              "marketValue": 141.5006,
+              "marketWeight": 0.1633
+            },
+            {
+              "symbol": "EOG",
+              "marketValue": 115.7559,
+              "marketWeight": 0.1336
+            },
+            {
+              "symbol": "COP",
+              "marketValue": 60.1053,
+              "marketWeight": 0.0693
+            }
+          ]
+        },
+        "risk": {
+          "overweightPositions": [
+            {
+              "symbol": "SGOL",
+              "marketWeight": 0.3837,
+              "marketValue": 332.5598
+            },
+            {
+              "symbol": "SIVR",
+              "marketWeight": 0.2349,
+              "marketValue": 203.5516
+            }
+          ],
+          "top3Concentration": 0.7818,
+          "top3ConcentrationBreached": true,
+          "bigLosers": [],
+          "weirdValues": []
+        },
+        "actions": {
+          "trimCandidates": [
+            {
+              "symbol": "SGOL",
+              "marketWeight": 0.3837,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            },
+            {
+              "symbol": "SIVR",
+              "marketWeight": 0.2349,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            }
+          ],
+          "addCandidates": [
+            {
+              "symbol": "URA",
+              "currentWeight": 0.0153,
+              "options": [
+                "Keep weight small if uncertainty is still high.",
+                "Scale only if thesis and liquidity checks remain valid.",
+                "Leave unchanged to prioritize concentration control."
+              ],
+              "note": "Underweight position shown for review, not a direct buy instruction."
+            }
+          ],
+          "stopLossReview": [],
+          "takeProfitReview": [
+            {
+              "symbol": "URA",
+              "pnlPct": 3.5681,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "SIVR",
+              "pnlPct": 2.7253,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "SGOL",
+              "pnlPct": 0.3302,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "GOOG",
+              "pnlPct": 0.3175,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            }
+          ]
+        },
+        "deepInsights": {
+          "concentrationStress": "high",
+          "hitRate": 1,
+          "winnerCount": 6,
+          "loserCount": 0,
+          "flatCount": 0,
+          "topContributors": [
+            {
+              "symbol": "SIVR",
+              "pnl": 148.9116,
+              "pnlPct": 2.7253
+            },
+            {
+              "symbol": "SGOL",
+              "pnl": 82.5598,
+              "pnlPct": 0.3302
+            },
+            {
+              "symbol": "GOOG",
+              "pnl": 34.1006,
+              "pnlPct": 0.3175
+            }
+          ],
+          "topDetractors": [],
+          "deadCapitalSpent": 0,
+          "inactivePositionCount": 0,
+          "avgWinnerPct": 1.208,
+          "avgLoserPct": null,
+          "multiLotSymbols": []
+        },
+        "checklist": [
+          "Thesis still valid vs latest fundamentals?",
+          "Any near-term earnings/news/events that change risk?",
+          "Liquidity and slippage acceptable for current size?",
+          "Any currency exposure drift vs base currency?",
+          "Position sizes still aligned with risk budget?",
+          "Rebalancing rules followed consistently?"
+        ],
+        "adjustments": [],
+        "positions": [
+          {
+            "symbol": "SIVR",
+            "quantity": 2.78,
+            "avgCost": 19.6547,
+            "spent": 54.64,
+            "marketValue": 203.5516,
+            "pnl": 148.9116,
+            "pnlPct": 2.7253,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "SGOL",
+            "quantity": 6.937,
+            "avgCost": 36.0386,
+            "spent": 250,
+            "marketValue": 332.5598,
+            "pnl": 82.5598,
+            "pnlPct": 0.3302,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "GOOG",
+            "quantity": 0.4624,
+            "avgCost": 232.2715,
+            "spent": 107.4,
+            "marketValue": 141.5006,
+            "pnl": 34.1006,
+            "pnlPct": 0.3175,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "URA",
+            "quantity": 0.2552,
+            "avgCost": 11.3636,
+            "spent": 2.9,
+            "marketValue": 13.2474,
+            "pnl": 10.3474,
+            "pnlPct": 3.5681,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "COP",
+            "quantity": 0.5394,
+            "avgCost": 92.6956,
+            "spent": 50,
+            "marketValue": 60.1053,
+            "pnl": 10.1053,
+            "pnlPct": 0.2021,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "EOG",
+            "quantity": 0.9588,
+            "avgCost": 109.2511,
+            "spent": 104.75,
+            "marketValue": 115.7559,
+            "pnl": 11.0059,
+            "pnlPct": 0.1051,
+            "sourceCount": 1
+          }
+        ],
+        "inactivePositions": []
+      }
+    },
+    {
+      "market": "Crypto",
+      "currency": "USD",
+      "analysis": {
+        "label": "Crypto (USD)",
+        "rawPositionCount": 3,
+        "positionCount": 3,
+        "inactivePositionCount": 0,
+        "snapshot": {
+          "baseSpent": 3950.1,
+          "baseMarketValue": 2134.2706,
+          "basePnl": -1815.8294,
+          "totalSpent": 5520.1,
+          "totalMarketValue": 2134.2706,
+          "totalPnl": -3385.8294,
+          "totalPnlPct": -0.6134,
+          "adjustments": {
+            "count": 1,
+            "spentDelta": 1570,
+            "marketValueDelta": 0,
+            "pnlDelta": -1570,
+            "byKind": [
+              {
+                "kind": "loss_carry",
+                "amount": 1570
+              }
+            ],
+            "entries": [
+              {
+                "kind": "loss_carry",
+                "label": "OLD LOSS",
+                "amount": 1570,
+                "spentDelta": 1570,
+                "marketValueDelta": 0,
+                "pnlDelta": -1570,
+                "sourceDocument": "Thndr US",
+                "sourceWorksheet": "Crypto",
+                "rowIndex": 8
+              }
+            ]
+          },
+          "topPositions": [
+            {
+              "symbol": "RENDER",
+              "marketValue": 954.8,
+              "marketWeight": 0.4474
+            },
+            {
+              "symbol": "HEDERA",
+              "marketValue": 677.0499,
+              "marketWeight": 0.3172
+            },
+            {
+              "symbol": "ZILLIQA",
+              "marketValue": 502.4207,
+              "marketWeight": 0.2354
+            }
+          ]
+        },
+        "risk": {
+          "overweightPositions": [
+            {
+              "symbol": "RENDER",
+              "marketWeight": 0.4474,
+              "marketValue": 954.8
+            },
+            {
+              "symbol": "HEDERA",
+              "marketWeight": 0.3172,
+              "marketValue": 677.0499
+            },
+            {
+              "symbol": "ZILLIQA",
+              "marketWeight": 0.2354,
+              "marketValue": 502.4207
+            }
+          ],
+          "top3Concentration": 1,
+          "top3ConcentrationBreached": true,
+          "bigLosers": [
+            {
+              "symbol": "ZILLIQA",
+              "pnlPct": -0.5981,
+              "pnl": -747.5793
+            },
+            {
+              "symbol": "RENDER",
+              "pnlPct": -0.4033,
+              "pnl": -645.2
+            },
+            {
+              "symbol": "HEDERA",
+              "pnlPct": -0.3846,
+              "pnl": -423.0501
+            }
+          ],
+          "weirdValues": []
+        },
+        "actions": {
+          "trimCandidates": [
+            {
+              "symbol": "RENDER",
+              "marketWeight": 0.4474,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            },
+            {
+              "symbol": "HEDERA",
+              "marketWeight": 0.3172,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            },
+            {
+              "symbol": "ZILLIQA",
+              "marketWeight": 0.2354,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            }
+          ],
+          "addCandidates": [],
+          "stopLossReview": [
+            {
+              "symbol": "ZILLIQA",
+              "pnlPct": -0.5981,
+              "options": [
+                "Hold with a clear invalidation level.",
+                "Reduce risk exposure.",
+                "Exit and rotate capital."
+              ],
+              "warning": "Avoid averaging down without a refreshed thesis and explicit risk limits."
+            },
+            {
+              "symbol": "RENDER",
+              "pnlPct": -0.4033,
+              "options": [
+                "Hold with a clear invalidation level.",
+                "Reduce risk exposure.",
+                "Exit and rotate capital."
+              ],
+              "warning": "Avoid averaging down without a refreshed thesis and explicit risk limits."
+            },
+            {
+              "symbol": "HEDERA",
+              "pnlPct": -0.3846,
+              "options": [
+                "Hold with a clear invalidation level.",
+                "Reduce risk exposure.",
+                "Exit and rotate capital."
+              ],
+              "warning": "Avoid averaging down without a refreshed thesis and explicit risk limits."
+            }
+          ],
+          "takeProfitReview": []
+        },
+        "deepInsights": {
+          "concentrationStress": "high",
+          "hitRate": 0,
+          "winnerCount": 0,
+          "loserCount": 3,
+          "flatCount": 0,
+          "topContributors": [],
+          "topDetractors": [
+            {
+              "symbol": "ZILLIQA",
+              "pnl": -747.5793,
+              "pnlPct": -0.5981
+            },
+            {
+              "symbol": "RENDER",
+              "pnl": -645.2,
+              "pnlPct": -0.4033
+            },
+            {
+              "symbol": "HEDERA",
+              "pnl": -423.0501,
+              "pnlPct": -0.3846
+            }
+          ],
+          "deadCapitalSpent": 0,
+          "inactivePositionCount": 0,
+          "avgWinnerPct": null,
+          "avgLoserPct": -0.462,
+          "multiLotSymbols": [
+            {
+              "symbol": "RENDER",
+              "rows": 2,
+              "marketValue": 954.8,
+              "pnl": -645.2
+            },
+            {
+              "symbol": "HEDERA",
+              "rows": 2,
+              "marketValue": 677.0499,
+              "pnl": -423.0501
+            }
+          ]
+        },
+        "checklist": [
+          "Thesis still valid vs latest fundamentals?",
+          "Any near-term earnings/news/events that change risk?",
+          "Liquidity and slippage acceptable for current size?",
+          "Any currency exposure drift vs base currency?",
+          "Position sizes still aligned with risk budget?",
+          "Rebalancing rules followed consistently?"
+        ],
+        "adjustments": [
+          {
+            "kind": "loss_carry",
+            "label": "OLD LOSS",
+            "amount": 1570,
+            "spentDelta": 1570,
+            "marketValueDelta": 0,
+            "pnlDelta": -1570,
+            "sourceDocument": "Thndr US",
+            "sourceWorksheet": "Crypto",
+            "rowIndex": 8
+          }
+        ],
+        "positions": [
+          {
+            "symbol": "HEDERA",
+            "quantity": 6497.6,
+            "avgCost": 0.1693,
+            "spent": 1100.1,
+            "marketValue": 677.0499,
+            "pnl": -423.0501,
+            "pnlPct": -0.3846,
+            "sourceCount": 2
+          },
+          {
+            "symbol": "RENDER",
+            "quantity": 620,
+            "avgCost": 2.5806,
+            "spent": 1600,
+            "marketValue": 954.8,
+            "pnl": -645.2,
+            "pnlPct": -0.4033,
+            "sourceCount": 2
+          },
+          {
+            "symbol": "ZILLIQA",
+            "quantity": 109127,
+            "avgCost": 0.0115,
+            "spent": 1250,
+            "marketValue": 502.4207,
+            "pnl": -747.5793,
+            "pnlPct": -0.5981,
+            "sourceCount": 1
+          }
+        ],
+        "inactivePositions": []
+      }
+    },
+    {
+      "market": "EGX Equities",
+      "currency": "EGP",
+      "analysis": {
+        "label": "EGX Equities (EGP)",
+        "rawPositionCount": 11,
+        "positionCount": 7,
+        "inactivePositionCount": 4,
+        "snapshot": {
+          "baseSpent": 23525.16,
+          "baseMarketValue": 28814.85,
+          "basePnl": 5289.69,
+          "totalSpent": 23525.16,
+          "totalMarketValue": 28814.85,
+          "totalPnl": 5289.69,
+          "totalPnlPct": 0.2249,
+          "adjustments": {
+            "count": 0,
+            "spentDelta": 0,
+            "marketValueDelta": 0,
+            "pnlDelta": 0,
+            "byKind": [],
+            "entries": []
+          },
+          "topPositions": [
+            {
+              "symbol": "AMOC",
+              "marketValue": 9911.04,
+              "marketWeight": 0.344
+            },
+            {
+              "symbol": "MPCI",
+              "marketValue": 8104.32,
+              "marketWeight": 0.2813
+            },
+            {
+              "symbol": "MFPC",
+              "marketValue": 5490.81,
+              "marketWeight": 0.1906
+            },
+            {
+              "symbol": "EGAL",
+              "marketValue": 3153.8,
+              "marketWeight": 0.1095
+            },
+            {
+              "symbol": "JUFO",
+              "marketValue": 1194,
+              "marketWeight": 0.0414
+            }
+          ]
+        },
+        "risk": {
+          "overweightPositions": [
+            {
+              "symbol": "AMOC",
+              "marketWeight": 0.344,
+              "marketValue": 9911.04
+            },
+            {
+              "symbol": "MPCI",
+              "marketWeight": 0.2813,
+              "marketValue": 8104.32
+            }
+          ],
+          "top3Concentration": 0.8158,
+          "top3ConcentrationBreached": true,
+          "bigLosers": [],
+          "weirdValues": []
+        },
+        "actions": {
+          "trimCandidates": [
+            {
+              "symbol": "AMOC",
+              "marketWeight": 0.344,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            },
+            {
+              "symbol": "MPCI",
+              "marketWeight": 0.2813,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            }
+          ],
+          "addCandidates": [
+            {
+              "symbol": "IFAP",
+              "currentWeight": 0.0075,
+              "options": [
+                "Keep weight small if uncertainty is still high.",
+                "Scale only if thesis and liquidity checks remain valid.",
+                "Leave unchanged to prioritize concentration control."
+              ],
+              "note": "Underweight position shown for review, not a direct buy instruction."
+            }
+          ],
+          "stopLossReview": [],
+          "takeProfitReview": [
+            {
+              "symbol": "JUFO",
+              "pnlPct": 148.25,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "SAUD",
+              "pnlPct": 25.85,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "EGAL",
+              "pnlPct": 8.2216,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "IFAP",
+              "pnlPct": 6.8036,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            }
+          ]
+        },
+        "deepInsights": {
+          "concentrationStress": "high",
+          "hitRate": 0.8571,
+          "winnerCount": 6,
+          "loserCount": 1,
+          "flatCount": 0,
+          "topContributors": [
+            {
+              "symbol": "EGAL",
+              "pnl": 2811.8,
+              "pnlPct": 8.2216
+            },
+            {
+              "symbol": "JUFO",
+              "pnl": 1186,
+              "pnlPct": 148.25
+            },
+            {
+              "symbol": "SAUD",
+              "pnl": 775.5,
+              "pnlPct": 25.85
+            }
+          ],
+          "topDetractors": [
+            {
+              "symbol": "MPCI",
+              "pnl": -454.24,
+              "pnlPct": -0.0531
+            }
+          ],
+          "deadCapitalSpent": 1403,
+          "inactivePositionCount": 4,
+          "avgWinnerPct": 31.5418,
+          "avgLoserPct": -0.0531,
+          "multiLotSymbols": []
+        },
+        "checklist": [
+          "Thesis still valid vs latest fundamentals?",
+          "Any near-term earnings/news/events that change risk?",
+          "Liquidity and slippage acceptable for current size?",
+          "Any currency exposure drift vs base currency?",
+          "Position sizes still aligned with risk budget?",
+          "Rebalancing rules followed consistently?"
+        ],
+        "adjustments": [],
+        "positions": [
+          {
+            "symbol": "SAUD",
+            "quantity": 42,
+            "avgCost": -0.7143,
+            "spent": -30,
+            "marketValue": 745.5,
+            "pnl": 775.5,
+            "pnlPct": 25.85,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "JUFO",
+            "quantity": 40,
+            "avgCost": 0.2,
+            "spent": 8,
+            "marketValue": 1194,
+            "pnl": 1186,
+            "pnlPct": 148.25,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "AMOC",
+            "quantity": 1392,
+            "avgCost": 6.8901,
+            "spent": 9591,
+            "marketValue": 9911.04,
+            "pnl": 320.04,
+            "pnlPct": 0.0334,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "MFPC",
+            "quantity": 169,
+            "avgCost": 29.7515,
+            "spent": 5028,
+            "marketValue": 5490.81,
+            "pnl": 462.81,
+            "pnlPct": 0.092,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "IFAP",
+            "quantity": 11,
+            "avgCost": 2.5091,
+            "spent": 27.6,
+            "marketValue": 215.38,
+            "pnl": 187.78,
+            "pnlPct": 6.8036,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "EGAL",
+            "quantity": 13,
+            "avgCost": 26.3077,
+            "spent": 342,
+            "marketValue": 3153.8,
+            "pnl": 2811.8,
+            "pnlPct": 8.2216,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "MPCI",
+            "quantity": 54,
+            "avgCost": 158.4919,
+            "spent": 8558.56,
+            "marketValue": 8104.32,
+            "pnl": -454.24,
+            "pnlPct": -0.0531,
+            "sourceCount": 1
+          }
+        ],
+        "inactivePositions": [
+          {
+            "symbol": "ALCN",
+            "quantity": 0,
+            "avgCost": null,
+            "spent": 111,
+            "marketValue": 0,
+            "pnl": -111,
+            "pnlPct": -1,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "CCAP",
+            "quantity": 0,
+            "avgCost": null,
+            "spent": 699,
+            "marketValue": 0,
+            "pnl": -699,
+            "pnlPct": -1,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "DSCW",
+            "quantity": 0,
+            "avgCost": null,
+            "spent": 593,
+            "marketValue": 0,
+            "pnl": -593,
+            "pnlPct": -1,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "PRCL",
+            "quantity": 0,
+            "avgCost": null,
+            "spent": -34,
+            "marketValue": 0,
+            "pnl": 34,
+            "pnlPct": 1,
+            "sourceCount": 1
+          }
+        ]
+      }
+    }
+  ],
+  "combined": null,
+  "combinedCurrency": null,
+  "combinedByCurrency": [
+    {
+      "currency": "USD",
+      "analysis": {
+        "label": "Combined (USD)",
+        "rawPositionCount": 9,
+        "positionCount": 9,
+        "inactivePositionCount": 0,
+        "snapshot": {
+          "baseSpent": 4519.79,
+          "baseMarketValue": 3000.9912,
+          "basePnl": -1518.7988,
+          "totalSpent": 6089.79,
+          "totalMarketValue": 3000.9912,
+          "totalPnl": -3088.7988,
+          "totalPnlPct": -0.5072,
+          "adjustments": {
+            "count": 1,
+            "spentDelta": 1570,
+            "marketValueDelta": 0,
+            "pnlDelta": -1570,
+            "byKind": [
+              {
+                "kind": "loss_carry",
+                "amount": 1570
+              }
+            ],
+            "entries": [
+              {
+                "kind": "loss_carry",
+                "label": "OLD LOSS",
+                "amount": 1570,
+                "spentDelta": 1570,
+                "marketValueDelta": 0,
+                "pnlDelta": -1570,
+                "sourceDocument": "Thndr US",
+                "sourceWorksheet": "Crypto",
+                "rowIndex": 8
+              }
+            ]
+          },
+          "topPositions": [
+            {
+              "symbol": "RENDER",
+              "marketValue": 954.8,
+              "marketWeight": 0.3182
+            },
+            {
+              "symbol": "HEDERA",
+              "marketValue": 677.0499,
+              "marketWeight": 0.2256
+            },
+            {
+              "symbol": "ZILLIQA",
+              "marketValue": 502.4207,
+              "marketWeight": 0.1674
+            },
+            {
+              "symbol": "SGOL",
+              "marketValue": 332.5598,
+              "marketWeight": 0.1108
+            },
+            {
+              "symbol": "SIVR",
+              "marketValue": 203.5516,
+              "marketWeight": 0.0678
+            }
+          ]
+        },
+        "risk": {
+          "overweightPositions": [
+            {
+              "symbol": "RENDER",
+              "marketWeight": 0.3182,
+              "marketValue": 954.8
+            },
+            {
+              "symbol": "HEDERA",
+              "marketWeight": 0.2256,
+              "marketValue": 677.0499
+            }
+          ],
+          "top3Concentration": 0.7112,
+          "top3ConcentrationBreached": true,
+          "bigLosers": [
+            {
+              "symbol": "ZILLIQA",
+              "pnlPct": -0.5981,
+              "pnl": -747.5793
+            },
+            {
+              "symbol": "RENDER",
+              "pnlPct": -0.4033,
+              "pnl": -645.2
+            },
+            {
+              "symbol": "HEDERA",
+              "pnlPct": -0.3846,
+              "pnl": -423.0501
+            }
+          ],
+          "weirdValues": []
+        },
+        "actions": {
+          "trimCandidates": [
+            {
+              "symbol": "RENDER",
+              "marketWeight": 0.3182,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            },
+            {
+              "symbol": "HEDERA",
+              "marketWeight": 0.2256,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            }
+          ],
+          "addCandidates": [
+            {
+              "symbol": "URA",
+              "currentWeight": 0.0044,
+              "options": [
+                "Keep weight small if uncertainty is still high.",
+                "Scale only if thesis and liquidity checks remain valid.",
+                "Leave unchanged to prioritize concentration control."
+              ],
+              "note": "Underweight position shown for review, not a direct buy instruction."
+            }
+          ],
+          "stopLossReview": [
+            {
+              "symbol": "ZILLIQA",
+              "pnlPct": -0.5981,
+              "options": [
+                "Hold with a clear invalidation level.",
+                "Reduce risk exposure.",
+                "Exit and rotate capital."
+              ],
+              "warning": "Avoid averaging down without a refreshed thesis and explicit risk limits."
+            },
+            {
+              "symbol": "RENDER",
+              "pnlPct": -0.4033,
+              "options": [
+                "Hold with a clear invalidation level.",
+                "Reduce risk exposure.",
+                "Exit and rotate capital."
+              ],
+              "warning": "Avoid averaging down without a refreshed thesis and explicit risk limits."
+            },
+            {
+              "symbol": "HEDERA",
+              "pnlPct": -0.3846,
+              "options": [
+                "Hold with a clear invalidation level.",
+                "Reduce risk exposure.",
+                "Exit and rotate capital."
+              ],
+              "warning": "Avoid averaging down without a refreshed thesis and explicit risk limits."
+            }
+          ],
+          "takeProfitReview": [
+            {
+              "symbol": "URA",
+              "pnlPct": 3.5681,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "SIVR",
+              "pnlPct": 2.7253,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "SGOL",
+              "pnlPct": 0.3302,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "GOOG",
+              "pnlPct": 0.3175,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            }
+          ]
+        },
+        "deepInsights": {
+          "concentrationStress": "medium",
+          "hitRate": 0.6667,
+          "winnerCount": 6,
+          "loserCount": 3,
+          "flatCount": 0,
+          "topContributors": [
+            {
+              "symbol": "SIVR",
+              "pnl": 148.9116,
+              "pnlPct": 2.7253
+            },
+            {
+              "symbol": "SGOL",
+              "pnl": 82.5598,
+              "pnlPct": 0.3302
+            },
+            {
+              "symbol": "GOOG",
+              "pnl": 34.1006,
+              "pnlPct": 0.3175
+            }
+          ],
+          "topDetractors": [
+            {
+              "symbol": "ZILLIQA",
+              "pnl": -747.5793,
+              "pnlPct": -0.5981
+            },
+            {
+              "symbol": "RENDER",
+              "pnl": -645.2,
+              "pnlPct": -0.4033
+            },
+            {
+              "symbol": "HEDERA",
+              "pnl": -423.0501,
+              "pnlPct": -0.3846
+            }
+          ],
+          "deadCapitalSpent": 0,
+          "inactivePositionCount": 0,
+          "avgWinnerPct": 1.208,
+          "avgLoserPct": -0.462,
+          "multiLotSymbols": [
+            {
+              "symbol": "RENDER",
+              "rows": 2,
+              "marketValue": 954.8,
+              "pnl": -645.2
+            },
+            {
+              "symbol": "HEDERA",
+              "rows": 2,
+              "marketValue": 677.0499,
+              "pnl": -423.0501
+            }
+          ]
+        },
+        "checklist": [
+          "Thesis still valid vs latest fundamentals?",
+          "Any near-term earnings/news/events that change risk?",
+          "Liquidity and slippage acceptable for current size?",
+          "Any currency exposure drift vs base currency?",
+          "Position sizes still aligned with risk budget?",
+          "Rebalancing rules followed consistently?"
+        ],
+        "adjustments": [
+          {
+            "kind": "loss_carry",
+            "label": "OLD LOSS",
+            "amount": 1570,
+            "spentDelta": 1570,
+            "marketValueDelta": 0,
+            "pnlDelta": -1570,
+            "sourceDocument": "Thndr US",
+            "sourceWorksheet": "Crypto",
+            "rowIndex": 8
+          }
+        ],
+        "positions": [
+          {
+            "symbol": "SIVR",
+            "quantity": 2.78,
+            "avgCost": 19.6547,
+            "spent": 54.64,
+            "marketValue": 203.5516,
+            "pnl": 148.9116,
+            "pnlPct": 2.7253,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "SGOL",
+            "quantity": 6.937,
+            "avgCost": 36.0386,
+            "spent": 250,
+            "marketValue": 332.5598,
+            "pnl": 82.5598,
+            "pnlPct": 0.3302,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "GOOG",
+            "quantity": 0.4624,
+            "avgCost": 232.2715,
+            "spent": 107.4,
+            "marketValue": 141.5006,
+            "pnl": 34.1006,
+            "pnlPct": 0.3175,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "URA",
+            "quantity": 0.2552,
+            "avgCost": 11.3636,
+            "spent": 2.9,
+            "marketValue": 13.2474,
+            "pnl": 10.3474,
+            "pnlPct": 3.5681,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "COP",
+            "quantity": 0.5394,
+            "avgCost": 92.6956,
+            "spent": 50,
+            "marketValue": 60.1053,
+            "pnl": 10.1053,
+            "pnlPct": 0.2021,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "EOG",
+            "quantity": 0.9588,
+            "avgCost": 109.2511,
+            "spent": 104.75,
+            "marketValue": 115.7559,
+            "pnl": 11.0059,
+            "pnlPct": 0.1051,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "HEDERA",
+            "quantity": 6497.6,
+            "avgCost": 0.1693,
+            "spent": 1100.1,
+            "marketValue": 677.0499,
+            "pnl": -423.0501,
+            "pnlPct": -0.3846,
+            "sourceCount": 2
+          },
+          {
+            "symbol": "RENDER",
+            "quantity": 620,
+            "avgCost": 2.5806,
+            "spent": 1600,
+            "marketValue": 954.8,
+            "pnl": -645.2,
+            "pnlPct": -0.4033,
+            "sourceCount": 2
+          },
+          {
+            "symbol": "ZILLIQA",
+            "quantity": 109127,
+            "avgCost": 0.0115,
+            "spent": 1250,
+            "marketValue": 502.4207,
+            "pnl": -747.5793,
+            "pnlPct": -0.5981,
+            "sourceCount": 1
+          }
+        ],
+        "inactivePositions": []
+      }
+    },
+    {
+      "currency": "EGP",
+      "analysis": {
+        "label": "Combined (EGP)",
+        "rawPositionCount": 11,
+        "positionCount": 7,
+        "inactivePositionCount": 4,
+        "snapshot": {
+          "baseSpent": 23525.16,
+          "baseMarketValue": 28814.85,
+          "basePnl": 5289.69,
+          "totalSpent": 23525.16,
+          "totalMarketValue": 28814.85,
+          "totalPnl": 5289.69,
+          "totalPnlPct": 0.2249,
+          "adjustments": {
+            "count": 0,
+            "spentDelta": 0,
+            "marketValueDelta": 0,
+            "pnlDelta": 0,
+            "byKind": [],
+            "entries": []
+          },
+          "topPositions": [
+            {
+              "symbol": "AMOC",
+              "marketValue": 9911.04,
+              "marketWeight": 0.344
+            },
+            {
+              "symbol": "MPCI",
+              "marketValue": 8104.32,
+              "marketWeight": 0.2813
+            },
+            {
+              "symbol": "MFPC",
+              "marketValue": 5490.81,
+              "marketWeight": 0.1906
+            },
+            {
+              "symbol": "EGAL",
+              "marketValue": 3153.8,
+              "marketWeight": 0.1095
+            },
+            {
+              "symbol": "JUFO",
+              "marketValue": 1194,
+              "marketWeight": 0.0414
+            }
+          ]
+        },
+        "risk": {
+          "overweightPositions": [
+            {
+              "symbol": "AMOC",
+              "marketWeight": 0.344,
+              "marketValue": 9911.04
+            },
+            {
+              "symbol": "MPCI",
+              "marketWeight": 0.2813,
+              "marketValue": 8104.32
+            }
+          ],
+          "top3Concentration": 0.8158,
+          "top3ConcentrationBreached": true,
+          "bigLosers": [],
+          "weirdValues": []
+        },
+        "actions": {
+          "trimCandidates": [
+            {
+              "symbol": "AMOC",
+              "marketWeight": 0.344,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            },
+            {
+              "symbol": "MPCI",
+              "marketWeight": 0.2813,
+              "options": [
+                "Hold and accept concentration risk if thesis conviction is still high.",
+                "Trim partially to reduce single-name concentration.",
+                "Rebalance toward target weights over multiple sessions."
+              ],
+              "tradeoff": "Trimming lowers downside concentration but may cap upside if momentum continues."
+            }
+          ],
+          "addCandidates": [
+            {
+              "symbol": "IFAP",
+              "currentWeight": 0.0075,
+              "options": [
+                "Keep weight small if uncertainty is still high.",
+                "Scale only if thesis and liquidity checks remain valid.",
+                "Leave unchanged to prioritize concentration control."
+              ],
+              "note": "Underweight position shown for review, not a direct buy instruction."
+            }
+          ],
+          "stopLossReview": [],
+          "takeProfitReview": [
+            {
+              "symbol": "JUFO",
+              "pnlPct": 148.25,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "SAUD",
+              "pnlPct": 25.85,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "EGAL",
+              "pnlPct": 8.2216,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            },
+            {
+              "symbol": "IFAP",
+              "pnlPct": 6.8036,
+              "options": [
+                "Hold and trail risk controls.",
+                "Trim partially to lock gains.",
+                "Rebalance to target allocations."
+              ]
+            }
+          ]
+        },
+        "deepInsights": {
+          "concentrationStress": "high",
+          "hitRate": 0.8571,
+          "winnerCount": 6,
+          "loserCount": 1,
+          "flatCount": 0,
+          "topContributors": [
+            {
+              "symbol": "EGAL",
+              "pnl": 2811.8,
+              "pnlPct": 8.2216
+            },
+            {
+              "symbol": "JUFO",
+              "pnl": 1186,
+              "pnlPct": 148.25
+            },
+            {
+              "symbol": "SAUD",
+              "pnl": 775.5,
+              "pnlPct": 25.85
+            }
+          ],
+          "topDetractors": [
+            {
+              "symbol": "MPCI",
+              "pnl": -454.24,
+              "pnlPct": -0.0531
+            }
+          ],
+          "deadCapitalSpent": 1403,
+          "inactivePositionCount": 4,
+          "avgWinnerPct": 31.5418,
+          "avgLoserPct": -0.0531,
+          "multiLotSymbols": []
+        },
+        "checklist": [
+          "Thesis still valid vs latest fundamentals?",
+          "Any near-term earnings/news/events that change risk?",
+          "Liquidity and slippage acceptable for current size?",
+          "Any currency exposure drift vs base currency?",
+          "Position sizes still aligned with risk budget?",
+          "Rebalancing rules followed consistently?"
+        ],
+        "adjustments": [],
+        "positions": [
+          {
+            "symbol": "SAUD",
+            "quantity": 42,
+            "avgCost": -0.7143,
+            "spent": -30,
+            "marketValue": 745.5,
+            "pnl": 775.5,
+            "pnlPct": 25.85,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "JUFO",
+            "quantity": 40,
+            "avgCost": 0.2,
+            "spent": 8,
+            "marketValue": 1194,
+            "pnl": 1186,
+            "pnlPct": 148.25,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "AMOC",
+            "quantity": 1392,
+            "avgCost": 6.8901,
+            "spent": 9591,
+            "marketValue": 9911.04,
+            "pnl": 320.04,
+            "pnlPct": 0.0334,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "MFPC",
+            "quantity": 169,
+            "avgCost": 29.7515,
+            "spent": 5028,
+            "marketValue": 5490.81,
+            "pnl": 462.81,
+            "pnlPct": 0.092,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "IFAP",
+            "quantity": 11,
+            "avgCost": 2.5091,
+            "spent": 27.6,
+            "marketValue": 215.38,
+            "pnl": 187.78,
+            "pnlPct": 6.8036,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "EGAL",
+            "quantity": 13,
+            "avgCost": 26.3077,
+            "spent": 342,
+            "marketValue": 3153.8,
+            "pnl": 2811.8,
+            "pnlPct": 8.2216,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "MPCI",
+            "quantity": 54,
+            "avgCost": 158.4919,
+            "spent": 8558.56,
+            "marketValue": 8104.32,
+            "pnl": -454.24,
+            "pnlPct": -0.0531,
+            "sourceCount": 1
+          }
+        ],
+        "inactivePositions": [
+          {
+            "symbol": "ALCN",
+            "quantity": 0,
+            "avgCost": null,
+            "spent": 111,
+            "marketValue": 0,
+            "pnl": -111,
+            "pnlPct": -1,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "CCAP",
+            "quantity": 0,
+            "avgCost": null,
+            "spent": 699,
+            "marketValue": 0,
+            "pnl": -699,
+            "pnlPct": -1,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "DSCW",
+            "quantity": 0,
+            "avgCost": null,
+            "spent": 593,
+            "marketValue": 0,
+            "pnl": -593,
+            "pnlPct": -1,
+            "sourceCount": 1
+          },
+          {
+            "symbol": "PRCL",
+            "quantity": 0,
+            "avgCost": null,
+            "spent": -34,
+            "marketValue": 0,
+            "pnl": 34,
+            "pnlPct": 1,
+            "sourceCount": 1
+          }
+        ]
+      }
+    }
+  ],
+  "mixedCurrency": true
+}

@@ -1,0 +1,544 @@
+{
+  "date": "2026-02-14",
+  "generatedAt": "2026-02-14",
+  "groundTruthFiles": [
+    "reports/2026-02-14.md",
+    "reports/2026-02-14.json"
+  ],
+  "portfolioSnapshot": {
+    "usd": {
+      "marketValue": 3000.9912,
+      "pnl": -3088.7988,
+      "pnlPct": -0.5072,
+      "top3Concentration": 0.7112,
+      "positionCount": 9
+    },
+    "cryptoUsd": {
+      "marketValue": 2134.2706,
+      "pnl": -3385.8294,
+      "pnlPct": -0.6134,
+      "top3Concentration": 1,
+      "positionCount": 3,
+      "accountingAdjustments": [
+        {
+          "label": "OLD LOSS",
+          "amount": 1570,
+          "kind": "loss_carry"
+        }
+      ]
+    },
+    "egp": {
+      "marketValue": 28814.85,
+      "pnl": 5289.69,
+      "pnlPct": 0.2249,
+      "top3Concentration": 0.8158,
+      "positionCount": 7
+    }
+  },
+  "macroContext": {
+    "us": {
+      "confidence": "medium_high",
+      "policyRateRange": "3.50%-3.75%",
+      "policyRateDate": "2026-01-28",
+      "cpi": {
+        "period": "2026-01",
+        "releaseDate": "2026-02-13",
+        "mom": 0.002,
+        "yoy": 0.024
+      },
+      "labor": {
+        "period": "2026-01",
+        "releaseDate": "2026-02-11",
+        "nonfarmPayrolls": 130000,
+        "unemploymentRate": 0.043,
+        "avgHourlyEarningsYoy": 0.037
+      },
+      "rates": {
+        "dgs3mo": 3.7,
+        "dgs10": 4.09,
+        "dgs30": 4.72
+      },
+      "usdBroadIndexDtwexbgs": {
+        "value": 118.2407,
+        "date": "2026-02-06"
+      },
+      "sp500Close": {
+        "value": 6836.17,
+        "date": "2026-02-13"
+      }
+    },
+    "crypto": {
+      "confidence": "medium",
+      "btcSpotApprox": {
+        "value": 68838.87,
+        "date": "2026-02-14"
+      },
+      "ethSpot": {
+        "value": 2049.79,
+        "date": "2026-02-13"
+      },
+      "coinsharesWeeklyFlows": {
+        "weekOf": "2026-02-09",
+        "totalUsd": -187000000,
+        "bitcoinUsd": -264000000,
+        "ethereumUsd": 5300000
+      },
+      "policyDevelopments": [
+        {
+          "date": "2025-12-08",
+          "item": "CFTC digital-asset collateral pilot launched."
+        },
+        {
+          "date": "2026-01-12",
+          "item": "Blockchain Regulatory Certainty Act of 2026 introduced."
+        },
+        {
+          "date": "2025-09-18",
+          "item": "CLARITY Act moved to Senate for action."
+        }
+      ]
+    },
+    "egx": {
+      "confidence": "medium_high",
+      "policy": {
+        "date": "2026-02-12",
+        "depositRate": 0.19,
+        "lendingRate": 0.2,
+        "mainOperationRate": 0.195,
+        "reserveRequirement": 0.16
+      },
+      "inflation": {
+        "period": "2026-01",
+        "headlineNationalYoy": 0.101,
+        "headlineUrbanYoy": 0.119,
+        "coreYoy": 0.112
+      },
+      "usdEgp": {
+        "value": 46.85,
+        "date": "2026-02-13"
+      },
+      "egx30Close": {
+        "value": 50490.2,
+        "date": "2026-02-12"
+      }
+    }
+  },
+  "marketAnalysis": {
+    "usStocks": {
+      "confidence": "medium_high",
+      "macroRegime": "Disinflation with still-firm labor and positive term structure; supports range-bound risk-on with episodic volatility.",
+      "concentrationRisk": "High concentration in metals proxies (SGOL/SIVR) plus single-name growth/energy exposure.",
+      "portfolioOptions": [
+        {
+          "theme": "Metals concentration",
+          "symbols": [
+            "SGOL",
+            "SIVR"
+          ],
+          "options": [
+            "Maintain hedge role while enforcing a max combined sleeve cap.",
+            "Trim into strength and redeploy to cash/T-bills if real yields rise."
+          ],
+          "tradeoff": "Concentration reduction lowers drawdown sensitivity but can reduce hedge upside in macro shocks."
+        },
+        {
+          "theme": "Quality growth",
+          "symbols": [
+            "GOOG"
+          ],
+          "options": [
+            "Hold if index breadth stabilizes.",
+            "Reduce on failed rebound if index remains below prior highs."
+          ],
+          "tradeoff": "Holding preserves upside participation but raises beta to broad equity pullbacks."
+        },
+        {
+          "theme": "Energy inflation hedge",
+          "symbols": [
+            "EOG",
+            "COP"
+          ],
+          "options": [
+            "Retain as geopolitical/inflation hedge.",
+            "Trim if oil trend weakens while broader risk appetite improves."
+          ],
+          "tradeoff": "Energy hedge can underperform in soft-landing growth rallies."
+        }
+      ]
+    },
+    "crypto": {
+      "confidence": "medium",
+      "regime": "High-beta corrective structure; improving but still negative flow backdrop.",
+      "concentrationRisk": "Top-3 concentration equals 100%, with all major positions at large unrealized losses.",
+      "portfolioOptions": [
+        {
+          "theme": "Single-name risk",
+          "symbols": [
+            "RENDER",
+            "HEDERA",
+            "ZILLIQA"
+          ],
+          "options": [
+            "Lower single-name caps while retaining aggregate crypto exposure.",
+            "Rotate part of alt exposure into BTC/ETH proxies if flows remain negative."
+          ],
+          "tradeoff": "Deconcentration may reduce rebound torque if alt season resumes quickly."
+        },
+        {
+          "theme": "Flow-aware risk management",
+          "symbols": [
+            "RENDER",
+            "HEDERA",
+            "ZILLIQA"
+          ],
+          "options": [
+            "Maintain positions only while BTC/ETH hold key supports.",
+            "Prioritize risk reduction if BTC breaks lower support band."
+          ],
+          "tradeoff": "Tighter risk bands reduce tail loss but increase whipsaw risk."
+        }
+      ]
+    },
+    "egx": {
+      "confidence": "medium_high",
+      "regime": "Easing-rate backdrop with moderating inflation and relatively stable FX; supportive but not risk-free.",
+      "concentrationRisk": "AMOC and MPCI dominate the sleeve; index-level strength may mask single-name drawdown risk.",
+      "portfolioOptions": [
+        {
+          "theme": "Top-2 concentration",
+          "symbols": [
+            "AMOC",
+            "MPCI"
+          ],
+          "options": [
+            "Keep exposure but cap combined weight.",
+            "Rebalance gradually toward smaller holdings on strength."
+          ],
+          "tradeoff": "Rebalancing lowers idiosyncratic risk but may dilute momentum in leaders."
+        },
+        {
+          "theme": "Embedded gains defense",
+          "symbols": [
+            "EGAL",
+            "JUFO",
+            "SAUD"
+          ],
+          "options": [
+            "Hold with trailing risk bands.",
+            "Partially de-risk on upside spikes into liquidity buffer."
+          ],
+          "tradeoff": "Profit-protection can sacrifice upside in persistent trend phases."
+        }
+      ]
+    },
+    "alternatives": {
+      "confidence": "medium",
+      "hedgesPresent": [
+        "Precious metals via SGOL/SIVR",
+        "Energy via EOG/COP"
+      ],
+      "additionalOptions": [
+        "Use short-duration fixed income/cash for carry and volatility dampening while front-end yields remain elevated.",
+        "Define explicit crypto and EGX concentration caps to supplement current hedge mix."
+      ]
+    }
+  },
+  "technicalPlan": {
+    "confidence": "medium",
+    "levels": {
+      "sp500": {
+        "last": 6836.17,
+        "resistance": [
+          6900,
+          7000
+        ],
+        "support": [
+          6700,
+          6500
+        ],
+        "invalidation": "Sustained break below 6500."
+      },
+      "btc": {
+        "lastApprox": 68838.87,
+        "resistance": [
+          70500,
+          73000
+        ],
+        "support": [
+          66000,
+          62000,
+          60000
+        ],
+        "invalidation": "Loss of 60000 with follow-through."
+      },
+      "eth": {
+        "last": 2049.79,
+        "resistance": [
+          2150,
+          2300
+        ],
+        "support": [
+          1960,
+          1820
+        ],
+        "invalidation": "Sustained break below 1820."
+      },
+      "egx30": {
+        "last": 50490.2,
+        "resistance": [
+          50930,
+          51600
+        ],
+        "support": [
+          49400,
+          48800
+        ],
+        "invalidation": "Daily closes below 48800."
+      }
+    },
+    "triggeredMoveMap": {
+      "breakout": [
+        "Keep core hedges but rotate part of concentrated winners into diversified beta.",
+        "In crypto, prefer higher-liquidity beta over thin-liquidity tails."
+      ],
+      "breakdown": [
+        "Reduce highest concentration buckets first (crypto alts, top EGX pair).",
+        "Increase cash/short-duration fixed income buffer."
+      ],
+      "range": [
+        "Apply rebalance bands: trim near resistance, re-add selectively near support.",
+        "Keep sleeve sizes below pre-set concentration limits."
+      ]
+    }
+  },
+  "scenarioMatrix": [
+    {
+      "name": "bull",
+      "probability": 0.3,
+      "confidence": "medium",
+      "triggers": [
+        "Disinflation trend extends with stable labor.",
+        "Crypto flows stabilize or turn net positive.",
+        "EGX30 holds above 49400."
+      ],
+      "portfolioOptions": [
+        "Maintain core hedges and add measured risk to lagging quality.",
+        "Favor deconcentration rather than leverage expansion."
+      ],
+      "invalidation": [
+        "BTC breaks below 62000.",
+        "S&P 500 breaks below 6700."
+      ]
+    },
+    {
+      "name": "base",
+      "probability": 0.45,
+      "confidence": "medium_high",
+      "triggers": [
+        "Mixed data and range-bound yields.",
+        "No major U.S. or Egypt policy shock."
+      ],
+      "portfolioOptions": [
+        "Prioritize concentration rebalancing.",
+        "Avoid aggressive directional additions."
+      ],
+      "invalidation": [
+        "Clear cross-asset breakout regime.",
+        "Clear cross-asset risk-off breakdown regime."
+      ]
+    },
+    {
+      "name": "bear",
+      "probability": 0.25,
+      "confidence": "medium",
+      "triggers": [
+        "Geopolitical escalation pushes oil and real yields higher.",
+        "Crypto outflows persist with lower lows.",
+        "USD strength returns and EM risk premium rises."
+      ],
+      "portfolioOptions": [
+        "De-risk highest-beta concentrations first.",
+        "Raise liquidity buffer and shorten risk horizon."
+      ],
+      "invalidation": [
+        "Rapid geopolitical de-escalation.",
+        "Sustained improvement in risk-asset breadth."
+      ]
+    }
+  ],
+  "horizonView": {
+    "next24h": {
+      "topRisks": [
+        "Crypto downside gap if BTC fails 66000.",
+        "Concentration shock from crypto/EGX sleeves.",
+        "Macro headline repricing front-end rates.",
+        "Geopolitical oil spike hurting risk assets.",
+        "EGX momentum reversal near recent highs."
+      ],
+      "topOpportunities": [
+        "Rebalance extreme winners into under-owned quality.",
+        "Capture carry in short-duration USD instruments.",
+        "Tactical upside if BTC/ETH reclaim resistance.",
+        "EGX continuation on clean break above 50930.",
+        "Precious-metals upside if growth scare returns."
+      ]
+    },
+    "next2Weeks": {
+      "topRisks": [
+        "Persistent crypto outflows despite stabilization attempts.",
+        "U.S. equity breadth deterioration with high concentration.",
+        "Rate-cut repricing after stronger inflation prints.",
+        "Egypt FX/liquidity wobble under regional stress.",
+        "Concentration remains above internal risk tolerance."
+      ],
+      "topOpportunities": [
+        "Egypt easing cycle supports domestic equities.",
+        "Range-trading gains via predefined rebalance bands.",
+        "Deconcentration from winners improves risk-adjusted profile.",
+        "Metals + energy hedge mix performs in macro uncertainty.",
+        "Re-risk optionality if cross-asset breakouts confirm."
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "fed-fomc-2026-01-28",
+      "title": "Federal Reserve FOMC Statement",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a.htm",
+      "date": "2026-01-28"
+    },
+    {
+      "id": "fed-fomc-impl-2026-01-28",
+      "title": "Federal Reserve Implementation Note",
+      "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260128a1.htm",
+      "date": "2026-01-28"
+    },
+    {
+      "id": "bls-cpi-2026-02-13",
+      "title": "BLS CPI News Release (Jan 2026 data)",
+      "url": "https://www.bls.gov/news.release/archives/cpi_02132026.htm",
+      "date": "2026-02-13"
+    },
+    {
+      "id": "bls-empsit-nr0",
+      "title": "BLS Employment Situation Summary",
+      "url": "https://www.bls.gov/news.release/empsit.nr0.htm",
+      "date": "2026-02-11"
+    },
+    {
+      "id": "fred-dgs3mo",
+      "title": "FRED 3-Month Treasury Constant Maturity",
+      "url": "https://fred.stlouisfed.org/series/DGS3MO",
+      "date": "2026-02-12"
+    },
+    {
+      "id": "fred-dgs10",
+      "title": "FRED 10-Year Treasury Constant Maturity",
+      "url": "https://fred.stlouisfed.org/series/DGS10",
+      "date": "2026-02-12"
+    },
+    {
+      "id": "fred-dgs30",
+      "title": "FRED 30-Year Treasury Constant Maturity",
+      "url": "https://fred.stlouisfed.org/series/DGS30",
+      "date": "2026-02-12"
+    },
+    {
+      "id": "fred-dtwexbgs",
+      "title": "FRED Broad Dollar Index (Goods)",
+      "url": "https://fred.stlouisfed.org/series/DTWEXBGS/",
+      "date": "2026-02-06"
+    },
+    {
+      "id": "fred-sp500",
+      "title": "FRED S&P 500 Index",
+      "url": "https://fred.stlouisfed.org/series/SP500",
+      "date": "2026-02-13"
+    },
+    {
+      "id": "fred-cbbtcusd",
+      "title": "FRED Coinbase Bitcoin Price",
+      "url": "https://fred.stlouisfed.org/series/CBBTCUSD/",
+      "date": "2026-02-08"
+    },
+    {
+      "id": "fred-cbethusd",
+      "title": "FRED Coinbase Ethereum Price",
+      "url": "https://fred.stlouisfed.org/series/CBETHUSD",
+      "date": "2026-02-13"
+    },
+    {
+      "id": "coinshares-weekly-2026-02-09",
+      "title": "CoinShares Weekly Digital Asset Fund Flows",
+      "url": "https://etp.coinshares.com/insights/research-data/fund-flows-09-02-26/",
+      "date": "2026-02-09"
+    },
+    {
+      "id": "cftc-9146-25",
+      "title": "CFTC Press Release 9146-25",
+      "url": "https://www.cftc.gov/PressRoom/PressReleases/9146-25",
+      "date": "2025-12-08"
+    },
+    {
+      "id": "congress-hr3633",
+      "title": "Digital Asset Market Clarity Act (status)",
+      "url": "https://www.congress.gov/bill/119th-congress/house-bill/3633",
+      "date": "2025-09-18"
+    },
+    {
+      "id": "congress-s3611",
+      "title": "Blockchain Regulatory Certainty Act of 2026",
+      "url": "https://www.congress.gov/bill/119th-congress/senate-bill/3611/text",
+      "date": "2026-01-12"
+    },
+    {
+      "id": "egypt-mpc-2026-02-12",
+      "title": "MPC cuts rates, reserve requirement update",
+      "url": "https://sis.gov.eg/en/media-center/news/mpc-cuts-interest-rates-by-1-lowers-banks-reserve-requirement-to-16/",
+      "date": "2026-02-12"
+    },
+    {
+      "id": "egypt-inflation-urban-2026-01",
+      "title": "Egypt urban inflation eased to 11.9% in Jan 2026",
+      "url": "https://www.dailynewsegypt.com/2026/02/10/egypts-urban-inflation-eases-to-11-9-in-january-2026/",
+      "date": "2026-02-10"
+    },
+    {
+      "id": "egypt-inflation-ahram-2026-01",
+      "title": "Ahram inflation update January 2026",
+      "url": "https://english.ahram.org.eg/News/562109.aspx",
+      "date": "2026-02-10"
+    },
+    {
+      "id": "egx30-historical",
+      "title": "Investing.com EGX30 historical data",
+      "url": "https://www.investing.com/indices/egx30-historical-data",
+      "date": "2026-02-12"
+    },
+    {
+      "id": "egx30-technical",
+      "title": "Investing.com EGX30 technical summary",
+      "url": "https://www.investing.com/indices/egx30-technical",
+      "date": "2026-02-14"
+    },
+    {
+      "id": "usd-egp-tradingeconomics",
+      "title": "TradingEconomics Egypt currency reference",
+      "url": "https://tradingeconomics.com/egypt/currency",
+      "date": "2026-02-13"
+    },
+    {
+      "id": "suez-aa-2026",
+      "title": "Suez Canal revenue rebound report",
+      "url": "https://www.aa.com.tr/en/middle-east/egypt-s-suez-canal-posts-revenue-rebound-earning-449-million-since-start-of-2026/3824222",
+      "date": "2026-01-06"
+    },
+    {
+      "id": "sp500-sector-weight-reference",
+      "title": "S&P 500 sector weights reference",
+      "url": "https://www.schwab.com/learn/story/stock-market-sector-performance-2026-top-sectors",
+      "date": "2026-01-30"
+    }
+  ],
+  "disclaimer": "Options-based analytical output only; not a direct buy/sell instruction set."
+}

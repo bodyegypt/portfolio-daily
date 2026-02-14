@@ -1,0 +1,7 @@
+interface:
+  display_name: "Portfolio Daily Analyst"
+  short_description: "Two-pass daily portfolio and macro workflow"
+  default_prompt: "Use $portfolio-daily-analyst (or $daily-analyst) to run today's factual report, then generate a second AI report with advice for US stocks, crypto, EGX, alternatives, and technical-analysis move plans."
+
+policy:
+  allow_implicit_invocation: true
