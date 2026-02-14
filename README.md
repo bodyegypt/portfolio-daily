@@ -1,11 +1,19 @@
 # portfolio-daily (Node.js)
 
-Daily CLI that reads Google Sheets document links from `inputs.json`, parses holdings from every worksheet/tab, and writes:
+Two-pass workflow:
 
-- `reports/YYYY-MM-DD.md`
-- `reports/YYYY-MM-DD.json`
+1. Facts pass (`npm run daily`)
+- Reads `inputs.json`.
+- Fetches all worksheets from each Google Sheet document.
+- Writes factual outputs only:
+  - `reports/YYYY-MM-DD.md`
+  - `reports/YYYY-MM-DD.json`
 
-The daily report is factual only (snapshot-style, no advice/risk/deep-insight sections).
+2. AI pass (Codex with `$portfolio-daily-analyst`)
+- Reads factual outputs.
+- Produces strategy outputs:
+  - `reports/YYYY-MM-DD.ai.md`
+  - `reports/YYYY-MM-DD.ai.json`
 
 ## 1. Install
 
@@ -13,62 +21,35 @@ The daily report is factual only (snapshot-style, no advice/risk/deep-insight se
 npm install
 ```
 
-## 2. Configure Google Sheets access (simplest first)
+## 2. Configure local inputs and secrets
 
-### Option A (simplest): API key for public/link-viewable sheets
+1. Start from template:
 
-Create a Google API key with **Google Sheets API** enabled, then put it in `inputs.json`:
-
-```json
-{
-  "googleApiKey": "YOUR_API_KEY",
-  "documents": [
-    { "name": "Portfolio US", "url": "https://docs.google.com/spreadsheets/d/..." }
-  ]
-}
+```bash
+cp inputs.example.json inputs.json
 ```
 
-Then run `npm run daily`.
+2. Fill `inputs.json` with your sheet document links.
+3. Keep real keys local only (`inputs.json` is ignored).
+4. Preferred key source: `GOOGLE_API_KEY` env var.  
+   `inputs.json.googleApiKey` is allowed as a local fallback.
 
-### Option B: OAuth / service account (private sheets)
+### Private sheets options
 
-1. Service account
-Set `GOOGLE_SERVICE_ACCOUNT_FILE=/path/to/service-account.json` and share sheets with that service account email.
+1. Service account: set `GOOGLE_SERVICE_ACCOUNT_FILE=/path/to/service-account.json`.
+2. OAuth desktop flow: `credentials.json` + cached `token.json`.
+3. ADC: `gcloud auth application-default login`.
 
-2. OAuth client (interactive once, then token cache)
-Place OAuth desktop client secrets at `credentials.json` (or set `GOOGLE_OAUTH_CLIENT_SECRETS`).
-First run opens browser auth and saves `token.json` (or `GOOGLE_TOKEN_FILE`).
+## 3. Inputs contract
 
-3. Application Default Credentials (ADC)
-If `gcloud auth application-default login` is configured, the CLI can use it.
+`inputs.json` requires:
 
-## 3. Inputs
+- `documents[]` with Google Sheets URLs.
+- `currency` per document (3-letter code, e.g. `USD`, `EGP`).
 
-`inputs.json` must include document links:
+Risk values accept decimal (`0.2`) or percent style (`20`, `"20%"`).
 
-```json
-{
-  "googleApiKey": "YOUR_API_KEY",
-  "documents": [
-    { "name": "Portfolio US", "url": "https://docs.google.com/spreadsheets/d/...", "currency": "USD" },
-    { "name": "Portfolio EGX", "url": "https://docs.google.com/spreadsheets/d/...", "currency": "EGP" }
-  ],
-  "baseCurrency": "USD",
-  "watchlist": ["AAPL", "MSFT"],
-  "risk": {
-    "maxPositionWeight": 0.2,
-    "top3ConcentrationWarn": 0.55,
-    "drawdownWarnPct": -0.15,
-    "takeProfitWarnPct": 0.25,
-    "minPositionWeight": 0.02
-  }
-}
-```
-
-Risk values can be decimals (`0.2`) or percents (`20` or `"20%"`).
-If document currencies differ, the report outputs combined totals per currency (no invalid mixed sum).
-
-## 4. Run daily
+## 4. Run facts pass
 
 ```bash
 npm run daily
@@ -80,10 +61,18 @@ Optional:
 npm run daily -- --config inputs.json --output-dir reports --date 2026-02-14
 ```
 
-## 5. Run Codex for smart report
+## 5. Facts pass output shape
 
-After daily run, invoke the skill prompt from `$portfolio-daily-analyst`.
-It instructs Codex to read today's factual files and generate:
+Pass-1 JSON is factual only.  
+Each worksheet entry includes wallet metadata:
 
-- `reports/YYYY-MM-DD.ai.md`
-- `reports/YYYY-MM-DD.ai.json`
+- `walletId` (stable id)
+- `walletName` (e.g. `Thndr US / Crypto`)
+- `walletType` (e.g. `us_equities`, `us_crypto`, `egx_equities`)
+
+No action recommendations are emitted in pass-1 outputs.
+
+## 6. Run AI pass (wallet-first)
+
+Use `$portfolio-daily-analyst` after daily run.  
+The AI pass must provide separate sections for each wallet (for your current setup: US equities wallet, US crypto wallet, EGX wallet), plus cross-wallet synthesis and alternatives.

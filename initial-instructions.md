@@ -1,3 +1,6 @@
+Historical design notes for the first implementation of this repo.
+Current source of truth is `README.md` + `.codex/skills/portfolio-daily-analyst/SKILL.md`.
+
 Build a reusable local CLI project (a codex skill) that I can run daily.
 
 High-level behavior

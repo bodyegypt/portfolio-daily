@@ -1,0 +1,27 @@
+{
+  "googleApiKey": "YOUR_LOCAL_API_KEY_OPTIONAL",
+  "documents": [
+    {
+      "name": "Thndr US",
+      "url": "https://docs.google.com/spreadsheets/d/REPLACE_WITH_SHEET_ID/edit?usp=sharing",
+      "currency": "USD"
+    },
+    {
+      "name": "Thndr Egx",
+      "url": "https://docs.google.com/spreadsheets/d/REPLACE_WITH_OTHER_SHEET_ID/edit?usp=sharing",
+      "currency": "EGP"
+    }
+  ],
+  "baseCurrency": "USD",
+  "watchlist": [
+    "AAPL",
+    "BTC"
+  ],
+  "risk": {
+    "maxPositionWeight": 0.2,
+    "top3ConcentrationWarn": 0.55,
+    "drawdownWarnPct": -0.15,
+    "takeProfitWarnPct": 0.25,
+    "minPositionWeight": 0.02
+  }
+}

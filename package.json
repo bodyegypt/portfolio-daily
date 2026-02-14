@@ -6,7 +6,8 @@
   "description": "Daily portfolio analysis from Google Sheets documents.",
   "scripts": {
     "daily": "node src/cli.js",
-    "check": "node --check src/cli.js"
+    "check": "node --check src/*.js test/*.test.js",
+    "test": "node --test"
   },
   "dependencies": {
     "@google-cloud/local-auth": "^3.0.1",

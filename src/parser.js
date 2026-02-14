@@ -43,6 +43,37 @@ function normalizeHeader(text) {
     .trim();
 }
 
+function normalizeNumericText(rawValue) {
+  let text = String(rawValue ?? "").trim();
+  if (!text) return text;
+
+  text = text.replace(/[−–—]/g, "-");
+  text = text.replace(/\b[A-Z]{3}\b/gi, "");
+  text = text.replace(/[$€£¥]/g, "");
+  text = text.replace(/\s+/g, "");
+
+  const hasDot = text.includes(".");
+  const hasComma = text.includes(",");
+  if (hasDot && hasComma) {
+    if (text.lastIndexOf(",") > text.lastIndexOf(".")) {
+      text = text.replace(/\./g, "").replace(/,/g, ".");
+    } else {
+      text = text.replace(/,/g, "");
+    }
+  } else if (hasComma) {
+    const commaCount = (text.match(/,/g) ?? []).length;
+    if (commaCount === 1 && /,\d{1,4}$/.test(text)) {
+      const [left, right] = text.split(",");
+      const rightIsThousandsLike = /^\d{3}$/.test(right) && /^\d+$/.test(left);
+      text = rightIsThousandsLike ? `${left}${right}` : `${left}.${right}`;
+    } else {
+      text = text.replace(/,/g, "");
+    }
+  }
+
+  return text;
+}
+
 function parseNumber(value, forcePercent = false) {
   const raw = String(value ?? "").trim();
   if (!raw || raw === "-" || raw === "--") return null;
@@ -53,13 +84,13 @@ function parseNumber(value, forcePercent = false) {
     negative = true;
     text = text.slice(1, -1);
   }
+  if (text.endsWith("-")) {
+    negative = true;
+    text = text.slice(0, -1);
+  }
 
   const hasPercent = text.endsWith("%");
-  text = text
-    .replace(/%$/g, "")
-    .replace(/[$€£,]/g, "")
-    .replace(/\b(USD|EGP|EUR|SAR|AED|GBP)\b/gi, "")
-    .trim();
+  text = normalizeNumericText(text.replace(/%$/g, ""));
 
   const parsed = Number.parseFloat(text);
   if (!Number.isFinite(parsed)) return null;
@@ -72,12 +103,27 @@ function parseNumber(value, forcePercent = false) {
 }
 
 function isBlankRow(row) {
-  return row.every((cell) => !String(cell ?? "").trim());
+  const cells = Array.isArray(row) ? row : [];
+  return cells.every((cell) => !String(cell ?? "").trim());
+}
+
+function isTotalLikeLabel(label) {
+  return /^(grand total|subtotal|sub total|total|totals|net total)$/i.test(label);
 }
 
 function isTotalRow(row) {
-  const merged = row.map((cell) => String(cell ?? "").trim().toLowerCase()).join(" ");
-  return /grand total|subtotal|total/.test(merged);
+  const cells = Array.isArray(row) ? row.map((cell) => String(cell ?? "").trim()) : [];
+  if (!cells.length) return false;
+
+  for (let index = 0; index < cells.length; index += 1) {
+    const normalized = normalizeHeader(cells[index]);
+    if (!isTotalLikeLabel(normalized)) continue;
+    const beforeCount = cells.slice(0, index).filter(Boolean).length;
+    if (beforeCount <= 1) return true;
+  }
+
+  const merged = cells.map((cell) => normalizeHeader(cell)).filter(Boolean).join(" ");
+  return /^(grand total|subtotal|sub total|total|net total)\b/.test(merged);
 }
 
 function detectHeaderMapping(row) {
@@ -218,7 +264,7 @@ function parseAdjustmentRow(row, documentName, worksheetTitle, rowIndex) {
 export function parseWorksheet(values, documentName, worksheetTitle) {
   const adjustments = [];
   values?.forEach((row, rowIndex) => {
-    const parsed = parseAdjustmentRow(row ?? [], documentName, worksheetTitle, rowIndex);
+    const parsed = parseAdjustmentRow(Array.isArray(row) ? row : [], documentName, worksheetTitle, rowIndex);
     if (parsed) adjustments.push(parsed);
   });
 
@@ -233,7 +279,7 @@ export function parseWorksheet(values, documentName, worksheetTitle) {
 
   const headers = [];
   values.forEach((row, index) => {
-    const mapping = detectHeaderMapping(row);
+    const mapping = detectHeaderMapping(Array.isArray(row) ? row : []);
     if (isHeaderCandidate(mapping)) headers.push({ index, mapping });
   });
 
@@ -255,7 +301,7 @@ export function parseWorksheet(values, documentName, worksheetTitle) {
     let blankCount = 0;
 
     for (let rowIndex = header.index + 1; rowIndex < endRow; rowIndex += 1) {
-      const row = values[rowIndex] ?? [];
+      const row = Array.isArray(values[rowIndex]) ? values[rowIndex] : [];
       if (isBlankRow(row)) {
         blankCount += 1;
         if (blankCount >= 2) break;

@@ -1,7 +1,7 @@
 interface:
   display_name: "Portfolio Daily Analyst"
-  short_description: "Two-pass daily portfolio and macro workflow"
-  default_prompt: "Use $portfolio-daily-analyst (or $daily-analyst) to run today's factual report, then generate a second AI report with advice for US stocks, crypto, EGX, alternatives, and technical-analysis move plans."
+  short_description: "Two-pass workflow with wallet-first actionable decisions"
+  default_prompt: "Use $portfolio-daily-analyst (or $daily-analyst) to run today's factual report first, then generate a wallet-first AI decision report with separate sections for Thndr US equities wallet, Thndr US crypto wallet, and Thndr EGX wallet. For each wallet, provide highest-likelihood scenario with why, direct BUY/HOLD/SELL/TRIM actions per symbol, concrete sizing (% and notional), triggers, invalidation, and expected outcomes. Include consolidated cross-wallet allocation deltas."
 
 policy:
   allow_implicit_invocation: true

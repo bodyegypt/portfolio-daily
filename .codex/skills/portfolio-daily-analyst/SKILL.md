@@ -1,6 +1,6 @@
 ---
 name: portfolio-daily-analyst
-description: "Run and maintain a two-stage portfolio workflow in this repo: (1) generate factual daily market reports from Google Sheets with no advice, risk, or deep-insight sections, then (2) generate a second smart report by reading today's reports/YYYY-MM-DD.md and reports/YYYY-MM-DD.json with macro/geopolitical research. Use when user asks for daily portfolio report runs, data-fixes, report-quality improvements, or post-report strategy analysis across US equities, crypto, and EGX."
+description: "Run and maintain a two-stage portfolio workflow in this repo: (1) produce strict factual reports from Google Sheets, and (2) produce a wallet-first AI decision report with explicit buy/sell/hold actions, sizing, probabilities, and expected outcomes for US equities wallet, US crypto wallet, and EGX wallet."
 ---
 
 # Portfolio Daily Analyst
@@ -13,12 +13,14 @@ Use the local project at repository root.
 2. Confirm output files exist:
 `reports/YYYY-MM-DD.md`
 `reports/YYYY-MM-DD.json`
-3. Keep this pass factual only:
-- Portfolio snapshot
-- Market splits by currency and market
-- Accounting adjustments (for example `OLD LOSS`)
+3. Keep this pass factual only. Allowed sections:
+- portfolio snapshots
+- concentration/risk metrics as computed facts
+- market splits by currency and market
+- accounting adjustments (for example `OLD LOSS`)
+- wallet metadata (`walletId`, `walletName`, `walletType`)
 
-Do not add strategy/advice to the first report.
+Do not add strategy/advice/action recommendations to the first report.
 
 ## Run Post-Analysis Pass
 
@@ -34,8 +36,8 @@ Do not add strategy/advice to the first report.
 Use this template:
 
 ```md
-You are my cross-market portfolio strategist.
-Use my factual daily report as ground truth, then add latest dated market + geopolitical context with sources.
+You are my cross-market portfolio strategist and decision partner.
+Use my factual daily report as ground truth, then give a practical action plan with your own conviction view.
 
 Read:
 - reports/YYYY-MM-DD.json
@@ -45,39 +47,47 @@ Write:
 - reports/YYYY-MM-DD.ai.md
 - reports/YYYY-MM-DD.ai.json
 
-Required scope:
-1) US stocks market:
-- Macro regime (rates, inflation, labor, USD, yields)
-- Sector rotation and concentration risk
-- Portfolio-specific options (not orders)
+Primary layout (wallet-first, mandatory):
+1) Wallet: Thndr US / Sheet1 (US equities wallet)
+2) Wallet: Thndr US / Crypto (US crypto wallet)
+3) Wallet: Thndr Egx / Sheet1 (EGX wallet)
 
-2) Crypto market:
-- Liquidity/risk-on regime
-- BTC/ETH structure, flows, regulation/policy risk
-- Portfolio-specific options (not orders)
+For each wallet section include:
+- Current wallet factual anchor (weights, concentration, winners/losers)
+- Market context relevant to that wallet
+- Most-likely scenario for:
+  - next 24h
+  - next 2 weeks
+  with probability (%) and clear why
+- Direct action plan table for each current holding with:
+  - symbol
+  - action now: BUY / HOLD / SELL / TRIM
+  - size change (% of wallet and approximate notional in wallet currency)
+  - trigger level or execution condition
+  - invalidation/stop level
+  - expectation if correct and if wrong
+- Prioritized top 3 action items (ranked by expected value)
+- Alternatives mapped to that wallet (hedges, defensive sleeves, cash/fixed-income where relevant)
 
-3) EGX market:
-- EGP/FX sensitivity, local rates/inflation, policy + liquidity
-- Portfolio-specific options (not orders)
-
-4) Alternatives:
-- Gold/silver/commodities, short-duration fixed income, cash buffer, defensive sleeves
-- Explain where alternatives hedge current portfolio exposures
-
-5) Technical-analysis move plan:
-- Multi-timeframe structure (trend, momentum, volatility, support/resistance, invalidation levels)
-- Triggered move map:
-  - if breakout, then option set A
-  - if breakdown, then option set B
-  - if range, then option set C
-
-6) Scenario matrix:
-- Bull/base/bear with probabilities, triggers, and invalidation
+Then add cross-wallet synthesis:
+4) Cross-wallet market synthesis (US equities / crypto / EGX interactions)
+5) Consolidated capital-allocation plan across wallets:
+- target allocation %
+- delta from current
+- why this mix is most likely to work
+6) Scenario matrix (bull/base/bear) with probabilities, triggers, invalidation, and what to do in each case
 
 Output constraints:
-- Keep recommendations as options with tradeoffs, not hard buy/sell commands.
+- Be decisive and practical; avoid generic language.
+- Use explicit buy/sell/hold wording and sizing.
+- Always state highest-likelihood path and why.
 - Use explicit dates and confidence levels.
-- Highlight top 5 risks and top 5 opportunities for next 24h and next 2 weeks.
+- Distinguish the two US wallets explicitly; do not merge US equities and US crypto into one wallet section.
+- Include top 5 risks and top 5 opportunities for:
+  - next 24h
+  - next 2 weeks
+- Keep actions consistent with portfolio risk limits unless explicitly overriding with rationale.
+- Include dated sources for macro/policy statements.
 ```
 
 ## Fixing Data Issues
@@ -93,11 +103,15 @@ When numbers look wrong:
 3. Keep repeated symbols valid (multi-lot/multi-platform tracking).
 4. Keep per-document currency handling intact (`documents[].currency` in `inputs.json`).
 5. Preserve adjustment rows like `OLD LOSS` in totals as accounting adjustments, not holdings.
+6. Keep wallet metadata accurate for each worksheet:
+- `walletId`
+- `walletName`
+- `walletType`
 
 ## Output Contract
 
 Always preserve:
 
-- `reports/YYYY-MM-DD.md` as factual
-- `reports/YYYY-MM-DD.json` machine-readable
-- `reports/YYYY-MM-DD.ai.md` and `.ai.json` generated only in second pass
+- `reports/YYYY-MM-DD.md` as strict factual pass
+- `reports/YYYY-MM-DD.json` as machine-readable factual pass (with wallet metadata)
+- `reports/YYYY-MM-DD.ai.md` and `.ai.json` generated only in second pass with wallet-first, action-oriented analysis

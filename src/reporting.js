@@ -15,30 +15,16 @@ function fmtPct(value) {
   return `${(value * 100).toFixed(2)}%`;
 }
 
-function fmtMaybeCurrency(value, currency) {
-  if (!Number.isFinite(value)) return "n/a";
-  return fmtCurrency(value, currency);
-}
-
-function sectionRisk(report) {
+function sectionRiskFacts(report) {
   const lines = [];
-  lines.push("### Risk & Concentration");
-
+  lines.push("### Concentration & Data Quality");
   lines.push(`- Positions above max weight: ${report.risk.overweightPositions.length}`);
-  report.risk.overweightPositions.forEach((item) => {
-    lines.push(`- Overweight: ${item.symbol} at ${fmtPct(item.marketWeight)}`);
-  });
-
   lines.push(
     `- Top 3 concentration: ${fmtPct(report.risk.top3Concentration)} (breach: ${
       report.risk.top3ConcentrationBreached ? "yes" : "no"
     })`
   );
   lines.push(`- Big losers below drawdown threshold: ${report.risk.bigLosers.length}`);
-  report.risk.bigLosers.forEach((item) => {
-    lines.push(`- Loser: ${item.symbol} at ${fmtPct(item.pnlPct)}`);
-  });
-
   lines.push(`- Weird/missing values: ${report.risk.weirdValues.length}`);
   report.risk.weirdValues.slice(0, 10).forEach((item) => lines.push(`- ${item}`));
   if (report.risk.weirdValues.length > 10) lines.push("- ...truncated in markdown; full list in JSON.");
@@ -73,45 +59,6 @@ function sectionSnapshot(report, currency) {
   return lines;
 }
 
-function sectionDeepInsights(report, currency) {
-  const d = report.deepInsights ?? {};
-  const lines = [];
-  lines.push("### Deep Insights");
-  lines.push(`- Concentration stress: ${d.concentrationStress ?? "n/a"}`);
-  lines.push(
-    `- Hit rate: ${fmtPct(d.hitRate)} (${d.winnerCount ?? 0} winners / ${d.loserCount ?? 0} losers / ${d.flatCount ?? 0} flat)`
-  );
-  lines.push(`- Average winner %: ${fmtPct(d.avgWinnerPct)} | Average loser %: ${fmtPct(d.avgLoserPct)}`);
-  lines.push(
-    `- Inactive rows: ${d.inactivePositionCount ?? 0} | Dormant capital: ${fmtMaybeCurrency(
-      d.deadCapitalSpent,
-      currency
-    )}`
-  );
-
-  lines.push("- Top contributors:");
-  (d.topContributors ?? []).forEach((item) =>
-    lines.push(`- ${item.symbol}: ${fmtCurrency(item.pnl, currency)} (${fmtPct(item.pnlPct)})`)
-  );
-  if (!(d.topContributors ?? []).length) lines.push("- None.");
-
-  lines.push("- Top detractors:");
-  (d.topDetractors ?? []).forEach((item) =>
-    lines.push(`- ${item.symbol}: ${fmtCurrency(item.pnl, currency)} (${fmtPct(item.pnlPct)})`)
-  );
-  if (!(d.topDetractors ?? []).length) lines.push("- None.");
-
-  lines.push("- Multi-lot/platform symbols (consolidated by ticker for risk):");
-  (d.multiLotSymbols ?? []).forEach((item) =>
-    lines.push(
-      `- ${item.symbol}: ${item.rows} rows, ${fmtCurrency(item.marketValue, currency)} market value, ${fmtCurrency(item.pnl, currency)} P&L`
-    )
-  );
-  if (!(d.multiLotSymbols ?? []).length) lines.push("- None.");
-
-  return lines;
-}
-
 export function toMarkdown(dailyReport) {
   const lines = [];
   lines.push(`# Daily Portfolio Report - ${dailyReport.date}`);
@@ -127,23 +74,32 @@ export function toMarkdown(dailyReport) {
       lines.push("");
       lines.push(`### ${item.currency}`);
       lines.push(...sectionSnapshot(item.analysis, item.currency));
+      lines.push(...sectionRiskFacts(item.analysis));
     });
     lines.push("");
   } else {
     lines.push("## Combined Portfolio");
     lines.push(...sectionSnapshot(dailyReport.combined, dailyReport.combinedCurrency || dailyReport.baseCurrency));
+    lines.push(...sectionRiskFacts(dailyReport.combined));
     lines.push("");
   }
 
-  lines.push("## Per Worksheet");
+  lines.push("## Per Wallet");
   if (!dailyReport.worksheets.length) {
     lines.push("- No worksheet data parsed.");
   }
 
   dailyReport.worksheets.forEach((worksheet) => {
+    const walletLabel = worksheet.walletName ?? `${worksheet.documentName} / ${worksheet.worksheetTitle}`;
     lines.push("");
-    lines.push(`### ${worksheet.documentName} / ${worksheet.worksheetTitle} (${worksheet.currency})`);
+    lines.push(
+      `### ${walletLabel} (${worksheet.currency})`
+    );
+    lines.push(`- Wallet ID: ${worksheet.walletId ?? "n/a"}`);
+    lines.push(`- Wallet Type: ${worksheet.walletType ?? "other"}`);
+    lines.push(`- Market: ${worksheet.market}`);
     lines.push(...sectionSnapshot(worksheet.analysis, worksheet.currency));
+    lines.push(...sectionRiskFacts(worksheet.analysis));
   });
 
   if (dailyReport.failures.length) {
@@ -159,6 +115,7 @@ export function toMarkdown(dailyReport) {
       lines.push("");
       lines.push(`### ${item.market} (${item.currency})`);
       lines.push(...sectionSnapshot(item.analysis, item.currency));
+      lines.push(...sectionRiskFacts(item.analysis));
     });
   }
 

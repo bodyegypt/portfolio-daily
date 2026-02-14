@@ -5,6 +5,7 @@ import { createSheetsApi, fetchSpreadsheetDocument } from "./googleSheets.js";
 import { parseWorksheet } from "./parser.js";
 import { aggregatePositions, analyzePortfolio } from "./analysis.js";
 import { printConsoleSummary, writeReports } from "./reporting.js";
+import { buildWalletMetadata, classifyMarket } from "./wallets.js";
 
 function parseArgs(argv) {
   const out = {
@@ -42,14 +43,6 @@ function sanitizeErrorMessage(message) {
   return String(message ?? "").replace(/([?&]key=)[^&\s]+/gi, "$1***");
 }
 
-function classifyMarket(documentName, worksheetTitle) {
-  const joined = `${documentName} ${worksheetTitle}`.toLowerCase();
-  if (/crypto|btc|eth|sol|coin/.test(joined)) return "Crypto";
-  if (/egx|egypt|cairo|egp/.test(joined)) return "EGX Equities";
-  if (/\bus\b|nyse|nasdaq|sp500|s&p/.test(joined)) return "US Equities";
-  return "Other";
-}
-
 async function main() {
   const args = parseArgs(process.argv);
   const reportDate = args.date ?? todayString();
@@ -74,6 +67,7 @@ async function main() {
         const parsed = parseWorksheet(worksheet.values, doc.name, worksheet.title);
         const currency = doc.currency || config.baseCurrency;
         const market = classifyMarket(doc.name, worksheet.title);
+        const wallet = buildWalletMetadata(doc.name, worksheet.title, market);
         positionsByCurrency.set(currency, [
           ...(positionsByCurrency.get(currency) ?? []),
           ...parsed.positions
@@ -99,14 +93,14 @@ async function main() {
 
         const aggregated = aggregatePositions(parsed.positions);
         const analysis = analyzePortfolio({
-          label: `${doc.name} / ${worksheet.title}`,
+          label: wallet.walletName,
           positions: aggregated,
           weirdValues: parsed.weirdValues,
           risk: config.risk,
-          watchlist: config.watchlist,
           adjustments: parsed.adjustments ?? []
         });
         worksheetReports.push({
+          ...wallet,
           documentName: doc.name,
           documentTitle: documentData.documentTitle,
           worksheetTitle: worksheet.title,
@@ -125,15 +119,14 @@ async function main() {
     const aggregated = aggregatePositions(rawPositions);
     return {
       currency,
-      analysis: analyzePortfolio({
-        label: `Combined (${currency})`,
-        positions: aggregated,
-        weirdValues: weirdByCurrency.get(currency) ?? [],
-        risk: config.risk,
-        watchlist: config.watchlist,
-        adjustments: adjustmentsByCurrency.get(currency) ?? []
-      })
-    };
+        analysis: analyzePortfolio({
+          label: `Combined (${currency})`,
+          positions: aggregated,
+          weirdValues: weirdByCurrency.get(currency) ?? [],
+          risk: config.risk,
+          adjustments: adjustmentsByCurrency.get(currency) ?? []
+        })
+      };
   });
   const singleCurrency = combinedByCurrency.length === 1 ? combinedByCurrency[0] : null;
   const markets = [...positionsByMarketCurrency.entries()].map(([key, rawPositions]) => {
@@ -142,15 +135,14 @@ async function main() {
     return {
       market,
       currency,
-      analysis: analyzePortfolio({
-        label: `${market} (${currency})`,
-        positions: aggregated,
-        weirdValues: weirdByMarketCurrency.get(key) ?? [],
-        risk: config.risk,
-        watchlist: config.watchlist,
-        adjustments: adjustmentsByMarketCurrency.get(key) ?? []
-      })
-    };
+        analysis: analyzePortfolio({
+          label: `${market} (${currency})`,
+          positions: aggregated,
+          weirdValues: weirdByMarketCurrency.get(key) ?? [],
+          risk: config.risk,
+          adjustments: adjustmentsByMarketCurrency.get(key) ?? []
+        })
+      };
   });
 
   const dailyReport = {

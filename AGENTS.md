@@ -4,7 +4,7 @@ A skill is a set of local instructions to follow that is stored in a `SKILL.md` 
 ### Available skills
 - skill-creator: Guide for creating effective skills. Use when users want to create a new skill or update an existing one. (file: /Users/abdullah/.codex/skills/.system/skill-creator/SKILL.md)
 - skill-installer: Install Codex skills into `$CODEX_HOME/skills` from curated or GitHub sources. Use when users ask to list/install skills. (file: /Users/abdullah/.codex/skills/.system/skill-installer/SKILL.md)
-- portfolio-daily-analyst: Run and maintain the two-pass portfolio workflow in this repo (facts pass + AI post-analysis pass). Use for daily runs, data-fix workflows, and portfolio strategy analysis tasks. (file: /Users/abdullah/Desktop/workspace/self-growth/portfolio_daily/.codex/skills/portfolio-daily-analyst/SKILL.md)
+- portfolio-daily-analyst: Run and maintain the two-pass portfolio workflow in this repo (facts pass + AI post-analysis pass). AI pass is wallet-first and action-oriented (buy/sell/hold, sizing, probabilities, expected outcomes). Use for daily runs, data-fix workflows, and portfolio strategy analysis tasks. (file: /Users/abdullah/Desktop/workspace/self-growth/portfolio_daily/.codex/skills/portfolio-daily-analyst/SKILL.md)
 - daily-analyst: Alias for `portfolio-daily-analyst`; use the same workflow and file. (file: /Users/abdullah/Desktop/workspace/self-growth/portfolio_daily/.codex/skills/portfolio-daily-analyst/SKILL.md)
 
 ### How to use skills

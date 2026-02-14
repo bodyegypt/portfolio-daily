@@ -35,6 +35,33 @@ function normalizeDrawdown(raw, fallback) {
   return value > 0 ? -value : value;
 }
 
+function ensureInRange(name, value, min, max) {
+  if (!Number.isFinite(value) || value < min || value > max) {
+    throw new Error(`${name} must be between ${min} and ${max}. Received: ${value}`);
+  }
+}
+
+function normalizeDocument(item, index, baseCurrency) {
+  const row = index + 1;
+  const name = String(item.name ?? `Document ${row}`).trim() || `Document ${row}`;
+  const url = String(item.url ?? "").trim();
+  const currency = String(item.currency ?? baseCurrency).trim().toUpperCase();
+
+  if (!url) {
+    throw new Error(`documents[${index}].url is required.`);
+  }
+  if (!/^https:\/\/docs\.google\.com\/spreadsheets\/d\//i.test(url)) {
+    throw new Error(
+      `documents[${index}].url must be a Google Sheets document URL. Received: ${url}`
+    );
+  }
+  if (!/^[A-Z]{3}$/.test(currency)) {
+    throw new Error(`documents[${index}].currency must be a 3-letter code. Received: ${currency}`);
+  }
+
+  return { name, url, currency };
+}
+
 export async function loadConfig(path) {
   const text = await fs.readFile(path, "utf8");
   const data = JSON.parse(text);
@@ -42,12 +69,8 @@ export async function loadConfig(path) {
   const baseCurrency = String(data.baseCurrency ?? "USD").toUpperCase();
   const documents = Array.isArray(data.documents)
     ? data.documents
-        .filter((item) => item && item.url)
-        .map((item) => ({
-          name: String(item.name ?? "Unnamed Document"),
-          url: String(item.url),
-          currency: String(item.currency ?? baseCurrency).toUpperCase()
-        }))
+        .filter(Boolean)
+        .map((item, index) => normalizeDocument(item, index, baseCurrency))
     : [];
 
   if (documents.length === 0) {
@@ -65,10 +88,17 @@ export async function loadConfig(path) {
     takeProfitWarnPct: normalizeWeight(riskRaw.takeProfitWarnPct, DEFAULT_RISK.takeProfitWarnPct),
     minPositionWeight: normalizeWeight(riskRaw.minPositionWeight, DEFAULT_RISK.minPositionWeight)
   };
+  ensureInRange("risk.maxPositionWeight", risk.maxPositionWeight, 0, 1);
+  ensureInRange("risk.top3ConcentrationWarn", risk.top3ConcentrationWarn, 0, 1);
+  ensureInRange("risk.minPositionWeight", risk.minPositionWeight, 0, 1);
+  ensureInRange("risk.takeProfitWarnPct", risk.takeProfitWarnPct, -1, 10);
+  ensureInRange("risk.drawdownWarnPct", risk.drawdownWarnPct, -1, 0);
 
+  const inlineApiKey = String(data.googleApiKey ?? "").trim();
+  const envApiKey = String(process.env.GOOGLE_API_KEY ?? "").trim();
   return {
     baseCurrency,
-    googleApiKey: String(data.googleApiKey ?? process.env.GOOGLE_API_KEY ?? "").trim() || null,
+    googleApiKey: envApiKey || inlineApiKey || null,
     watchlist: Array.isArray(data.watchlist)
       ? data.watchlist.map((item) => String(item).trim()).filter(Boolean)
       : [],
