@@ -11,6 +11,8 @@ import { buildHistoricalTrends } from "./history.js";
 import { buildDiffReport, diffToMarkdown } from "./diff.js";
 import { renderSparklineTable, renderPortfolioSparkline, sparklineToMarkdown } from "./sparklines.js";
 import { writeHtmlReport } from "./htmlReport.js";
+import { updateLearningLedger, generateLearningContext, learningStatusSummary } from "./aiLearning.js";
+import { writeScorecard } from "./aiScorecard.js";
 
 function parseArgs(argv) {
   const out = {
@@ -19,7 +21,8 @@ function parseArgs(argv) {
     date: null,
     noHtml: false,
     diff: null,
-    lookback: 7
+    lookback: 7,
+    scoreAi: false
   };
 
   for (let i = 2; i < argv.length; i += 1) {
@@ -41,6 +44,8 @@ function parseArgs(argv) {
     } else if (token === "--lookback" && argv[i + 1]) {
       out.lookback = parseInt(argv[i + 1], 10) || 7;
       i += 1;
+    } else if (token === "--score-ai") {
+      out.scoreAi = true;
     } else if (token === "--help" || token === "-h") {
       console.log(
         [
@@ -53,6 +58,7 @@ function parseArgs(argv) {
           "  --no-html             Skip HTML report generation",
           "  --diff <YYYY-MM-DD>   Compare against a specific date",
           "  --lookback <days>     Historical trend lookback (default: 7)",
+          "  --score-ai            Score AI predictions and update learning ledger",
           "  --help, -h            Show this help"
         ].join("\n")
       );
@@ -230,6 +236,36 @@ async function main() {
     htmlPath = await writeHtmlReport(dailyReport, outputDir, healthScore, diff, trends);
   }
 
+  // AI Learning: score predictions and update ledger
+  let learningResult = null;
+  if (args.scoreAi) {
+    try {
+      learningResult = await updateLearningLedger(outputDir, reportDate);
+      const { ledger, ledgerPath } = learningResult;
+
+      // Write scorecard
+      const scorecard = await writeScorecard(ledger, outputDir, reportDate);
+
+      // Write learning context file for AI pass consumption
+      const contextPath = path.join(outputDir, "ai-learning-context.md");
+      const contextMd = generateLearningContext(ledger);
+      await fs.writeFile(contextPath, contextMd, "utf8");
+
+      // Store learning context reference in daily report
+      dailyReport.aiLearning = {
+        available: true,
+        ledgerPath,
+        scorecardMd: scorecard.mdPath,
+        scorecardJson: scorecard.jsonPath,
+        contextPath,
+        summary: learningStatusSummary(ledger)
+      };
+      await fs.writeFile(jsonPath, JSON.stringify(dailyReport, null, 2), "utf8");
+    } catch (err) {
+      console.error(`AI Learning: ${err.message}`);
+    }
+  }
+
   // Console output
   printConsoleSummary(dailyReport, markdownPath, jsonPath);
 
@@ -243,6 +279,13 @@ async function main() {
   }
 
   if (htmlPath) console.log(`HTML: ${htmlPath}`);
+
+  // Print AI learning status
+  if (learningResult) {
+    console.log(learningStatusSummary(learningResult.ledger));
+    console.log(`Scorecard: ${path.join(outputDir, `${reportDate}.ai-scorecard.md`)}`);
+    console.log(`Learning Ledger: ${path.join(outputDir, "ai-learning.json")}`);
+  }
 }
 
 main().catch((error) => {

@@ -9,10 +9,12 @@ Use the local project at repository root.
 
 ## Run Facts Pass
 
-1. Run `npm run daily`.
+1. Run `npm run daily -- --score-ai`.
 2. Confirm output files exist:
 `reports/YYYY-MM-DD.md`
 `reports/YYYY-MM-DD.json`
+`reports/ai-learning.json` (cumulative learning ledger)
+`reports/ai-learning-context.md` (learning context for AI pass)
 3. Keep this pass factual only. Allowed sections:
 - portfolio snapshots
 - concentration/risk metrics as computed facts
@@ -39,9 +41,18 @@ Use this template:
 You are my cross-market portfolio strategist and decision partner.
 Use my factual daily report as ground truth, then give a practical action plan with your own conviction view.
 
+IMPORTANT — Self-Learning Protocol:
+Before writing your analysis, read the learning context file. It contains your historical
+prediction accuracy, calibration data, and self-improvement directives based on how your
+past predictions actually performed. Use this to adjust your confidence levels, action
+thresholds, and analytical focus. If a past pattern shows you are overconfident or biased
+in a certain direction, explicitly correct for it.
+
 Read:
 - reports/YYYY-MM-DD.json
 - reports/YYYY-MM-DD.md
+- reports/ai-learning-context.md (if it exists — your past accuracy and self-learning data)
+- reports/ai-learning.json (if it exists — detailed prediction ledger)
 
 Write:
 - reports/YYYY-MM-DD.ai.md
@@ -88,6 +99,28 @@ Output constraints:
   - next 2 weeks
 - Keep actions consistent with portfolio risk limits unless explicitly overriding with rationale.
 - Include dated sources for macro/policy statements.
+
+AI JSON structure requirements (for self-learning tracking):
+The `.ai.json` file MUST include a top-level `wallets` array with structured actions.
+Each wallet object must have:
+- `walletName`: string (e.g. "Thndr US / Sheet1")
+- `actions`: array of objects, each with:
+  - `symbol`: ticker string
+  - `action`: one of BUY / HOLD / SELL / TRIM
+  - `confidence`: number 0-1 (probability this is correct)
+  - `horizon`: "24h" or "2w"
+  - `sizeChange`: string (e.g. "+5%" or "-3%")
+  - `triggerLevel`: number or null
+  - `stopLevel`: number or null
+- `scenarios`: array of objects, each with:
+  - `label`: "bull" / "base" / "bear"
+  - `probability`: number 0-1
+  - `horizon`: "24h" or "2w"
+
+Also include a top-level `scenarioMatrix` array with the same scenario structure for cross-wallet scenarios.
+
+If learning context was available, include a `learningAdjustments` section in the JSON
+describing what you changed in this analysis based on past accuracy data.
 ```
 
 ## Fixing Data Issues
@@ -115,3 +148,6 @@ Always preserve:
 - `reports/YYYY-MM-DD.md` as strict factual pass
 - `reports/YYYY-MM-DD.json` as machine-readable factual pass (with wallet metadata)
 - `reports/YYYY-MM-DD.ai.md` and `.ai.json` generated only in second pass with wallet-first, action-oriented analysis
+- `reports/ai-learning.json` — cumulative AI prediction ledger (auto-updated by `--score-ai`)
+- `reports/ai-learning-context.md` — learning context consumed by AI pass (auto-generated)
+- `reports/YYYY-MM-DD.ai-scorecard.md` and `.json` — daily AI accuracy scorecard (auto-generated)
