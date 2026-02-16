@@ -6,12 +6,20 @@ import { parseWorksheet } from "./parser.js";
 import { aggregatePositions, analyzePortfolio } from "./analysis.js";
 import { printConsoleSummary, writeReports } from "./reporting.js";
 import { buildWalletMetadata, classifyMarket } from "./wallets.js";
+import { computeHealthScore, healthScoreToMarkdown } from "./healthScore.js";
+import { buildHistoricalTrends } from "./history.js";
+import { buildDiffReport, diffToMarkdown } from "./diff.js";
+import { renderSparklineTable, renderPortfolioSparkline, sparklineToMarkdown } from "./sparklines.js";
+import { writeHtmlReport } from "./htmlReport.js";
 
 function parseArgs(argv) {
   const out = {
     config: "inputs.json",
     outputDir: "reports",
-    date: null
+    date: null,
+    noHtml: false,
+    diff: null,
+    lookback: 7
   };
 
   for (let i = 2; i < argv.length; i += 1) {
@@ -25,9 +33,28 @@ function parseArgs(argv) {
     } else if (token === "--date" && argv[i + 1]) {
       out.date = argv[i + 1];
       i += 1;
+    } else if (token === "--no-html") {
+      out.noHtml = true;
+    } else if (token === "--diff" && argv[i + 1]) {
+      out.diff = argv[i + 1];
+      i += 1;
+    } else if (token === "--lookback" && argv[i + 1]) {
+      out.lookback = parseInt(argv[i + 1], 10) || 7;
+      i += 1;
     } else if (token === "--help" || token === "-h") {
       console.log(
-        "Usage: npm run daily -- [--config inputs.json] [--output-dir reports] [--date YYYY-MM-DD]"
+        [
+          "Usage: npm run daily -- [options]",
+          "",
+          "Options:",
+          "  --config <path>       Config file (default: inputs.json)",
+          "  --output-dir <path>   Report output directory (default: reports)",
+          "  --date <YYYY-MM-DD>   Report date (default: today)",
+          "  --no-html             Skip HTML report generation",
+          "  --diff <YYYY-MM-DD>   Compare against a specific date",
+          "  --lookback <days>     Historical trend lookback (default: 7)",
+          "  --help, -h            Show this help"
+        ].join("\n")
       );
       process.exit(0);
     }
@@ -165,8 +192,57 @@ async function main() {
   };
 
   const outputDir = path.resolve(args.outputDir);
+
+  // Write core reports (markdown + JSON)
   const { markdownPath, jsonPath } = await writeReports(dailyReport, outputDir);
+
+  // Compute health score
+  const healthScore = computeHealthScore(dailyReport);
+  dailyReport.healthScore = healthScore;
+
+  // Build historical trends and diff (non-blocking — uses previously written reports)
+  const currency = dailyReport.combinedCurrency || dailyReport.baseCurrency;
+  const [trends, diff] = await Promise.all([
+    buildHistoricalTrends(outputDir, reportDate, args.lookback).catch(() => null),
+    buildDiffReport(outputDir, reportDate, args.diff).catch(() => null)
+  ]);
+
+  if (trends) dailyReport.trends = trends;
+  if (diff) dailyReport.diff = diff;
+
+  // Re-write JSON with enriched data
+  const fs = await import("node:fs/promises");
+  await fs.writeFile(jsonPath, JSON.stringify(dailyReport, null, 2), "utf8");
+
+  // Append enrichments to markdown
+  let enrichedMd = "";
+  enrichedMd += healthScoreToMarkdown(healthScore);
+  if (diff?.available) enrichedMd += diffToMarkdown(diff, currency);
+  if (trends?.available) enrichedMd += sparklineToMarkdown(trends);
+  if (enrichedMd) {
+    const existingMd = await fs.readFile(markdownPath, "utf8");
+    await fs.writeFile(markdownPath, existingMd + "\n" + enrichedMd, "utf8");
+  }
+
+  // Generate HTML report
+  let htmlPath = null;
+  if (!args.noHtml) {
+    htmlPath = await writeHtmlReport(dailyReport, outputDir, healthScore, diff, trends);
+  }
+
+  // Console output
   printConsoleSummary(dailyReport, markdownPath, jsonPath);
+
+  // Print health score to console
+  console.log(`Health: ${healthScore.bar} (${healthScore.label})`);
+
+  // Print sparklines to console if trends are available
+  if (trends?.available) {
+    console.log(renderPortfolioSparkline(trends));
+    console.log(renderSparklineTable(trends, currency));
+  }
+
+  if (htmlPath) console.log(`HTML: ${htmlPath}`);
 }
 
 main().catch((error) => {
