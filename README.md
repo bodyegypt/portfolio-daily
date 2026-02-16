@@ -55,15 +55,30 @@ Risk values accept decimal (`0.2`) or percent style (`20`, `"20%"`).
 npm run daily
 ```
 
-Optional:
+Optional flags:
 
 ```bash
-npm run daily -- --config inputs.json --output-dir reports --date 2026-02-14
+npm run daily -- [options]
+
+Options:
+  --config <path>       Config file (default: inputs.json)
+  --output-dir <path>   Report output directory (default: reports)
+  --date <YYYY-MM-DD>   Report date (default: today)
+  --no-html             Skip HTML report generation
+  --diff <YYYY-MM-DD>   Compare against a specific date
+  --lookback <days>     Historical trend lookback (default: 7)
 ```
 
 ## 5. Facts pass output shape
 
-Pass-1 JSON is factual only.  
+Pass-1 outputs per run:
+
+| File | Description |
+|---|---|
+| `reports/YYYY-MM-DD.md` | Factual markdown report with health score, diff, and sparkline trends |
+| `reports/YYYY-MM-DD.json` | Machine-readable JSON with all enrichments |
+| `reports/YYYY-MM-DD.html` | Self-contained HTML dashboard with treemap and heatmap |
+
 Each worksheet entry includes wallet metadata:
 
 - `walletId` (stable id)
@@ -72,7 +87,58 @@ Each worksheet entry includes wallet metadata:
 
 No action recommendations are emitted in pass-1 outputs.
 
-## 6. Run AI pass (wallet-first)
+## 6. Enrichments
 
-Use `$portfolio-daily-analyst` after daily run.  
+The facts pass automatically generates these additional analytics when historical data is available:
+
+### Portfolio Health Score
+
+A composite 0-100 score across four dimensions (25 points each):
+
+- **Diversification** - Position count, weight distribution (HHI), underweight penalty
+- **Risk Exposure** - Overweight positions, concentration breaches, big losers
+- **Performance** - Overall P&L percentage, drawdown severity
+- **Data Quality** - Weird/missing values, parse failures
+
+Displayed as a visual bar in the terminal and a gauge in the HTML report.
+
+### Day-over-Day Diff
+
+Automatically compares today's report with the most recent previous report:
+
+- Portfolio-level delta (market value, P&L, position count)
+- New positions entered
+- Positions closed/exited
+- Biggest P&L gainers and losers
+- Weight shift analysis
+
+Use `--diff 2026-02-10` to compare against a specific date.
+
+### Historical Trends & Sparklines
+
+Reads past JSON reports (default: 7-day lookback) and computes:
+
+- Per-position P&L sparklines (`▁▂▃▅▇`) in terminal output
+- Trend classification (uptrend/downtrend/sideways) per position
+- Momentum score (rate of change)
+- 3-day and 5-day moving averages
+- Portfolio-level trend with sparkline visualization
+
+Use `--lookback 14` to extend the lookback window.
+
+### HTML Dashboard
+
+A single self-contained `.html` file with:
+
+- Dark-themed responsive layout (no external dependencies)
+- Top-level metric cards (market value, invested, P&L, return)
+- Health score gauge with dimension breakdown
+- Interactive position treemap colored by P&L performance
+- Full position table with P&L bars
+- Per-wallet summary cards
+- Day-over-day diff section (when available)
+
+## 7. Run AI pass (wallet-first)
+
+Use `$portfolio-daily-analyst` after daily run.
 The AI pass must provide separate sections for each wallet (for your current setup: US equities wallet, US crypto wallet, EGX wallet), plus cross-wallet synthesis and alternatives.
